@@ -1,0 +1,38 @@
+{
+  "name": "artica/pzp-toolbox",
+  "description": "Artica website-starter: Craft CMS 5 met contentmodel als YAML, blokken en een statisch prototype",
+  "type": "project",
+  "license": "proprietary",
+  "require": {
+    "php": ">=8.2",
+    "craftcms/ckeditor": "^4.0.0",
+    "craftcms/cms": "^5.6.0",
+    "craftcms/contact-form": "^3.1.0",
+    "vlucas/phpdotenv": "^5.4.0"
+  },
+  "require-dev": {
+    "craftcms/generator": "^2.0.0",
+    "yiisoft/yii2-shell": "^2.0.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "modules\\": "modules/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "craftcms/plugin-installer": true,
+      "yiisoft/yii2-composer": true
+    },
+    "sort-packages": true,
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "8.2"
+    }
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example.dev', '.env');\""
+    ]
+  }
+}

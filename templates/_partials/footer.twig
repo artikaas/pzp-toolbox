@@ -1,0 +1,50 @@
+{#-
+  Footer: call-to-action (global Footer), kolommen met links (global Navigatie), contactgegevens en social media.
+  Eindigt de pagina zelf al met een CTA-blok, dan vervalt de CTA van de footer (geen twee na elkaar).
+-#}
+{%- set laatsteBlok = (entry ?? null) ? ((entry.blokken.all()|last).type.handle ?? null) : null -%}
+{%- set kolommen = (navigatie.footerKolommen ?? null) ? navigatie.footerKolommen.all() : [] -%}
+{%- set socials = [
+  { naam: 'Facebook', link: algemeen.facebook ?? null },
+  { naam: 'Instagram', link: algemeen.instagram ?? null },
+  { naam: 'LinkedIn', link: algemeen.linkedin ?? null },
+]|filter(s => s.link and s.link.url) -%}
+<footer class="op-donker bg-primair-donker text-wit">
+  {%- if (footer.kop ?? null) and laatsteBlok != 'cta' %}
+    {% include '_components/cta' with { kop: footer.kop, tekst: footer.tekstPlat ?? null, link: footer.linkDoel ?? null, achtergrond: 'primair', id: 'footer-cta' } only %}
+  {%- endif %}
+
+  <div class="container-site grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.5fr_repeat(3,1fr)]">
+    <div class="flex flex-col gap-4">
+      <p class="font-kop text-xl font-bold">{{ siteTitel }}</p>
+      {%- if contact.adres ?? null %}<p class="text-wit/80">{{ contact.adres|nl2br }}</p>{% endif %}
+      {%- if (contact.email ?? null) or (contact.telefoon ?? null) %}
+        <ul class="space-y-1 text-wit/80">
+          {%- if contact.email ?? null %}<li><a href="mailto:{{ contact.email }}" class="underline-offset-2 hover:underline">{{ contact.email }}</a></li>{% endif %}
+          {%- if contact.telefoon ?? null %}<li><a href="tel:{{ contact.telefoon|replace({' ': '', '-': ''}) }}" class="underline-offset-2 hover:underline">{{ contact.telefoon }}</a></li>{% endif %}
+        </ul>
+      {%- endif %}
+      {%- if socials %}
+        <ul class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Social media">
+          {%- for s in socials %}<li><a href="{{ s.link.url }}" target="_blank" rel="noopener" class="font-semibold underline-offset-2 hover:underline">{{ s.naam }}<span class="sr-only"> (opent in een nieuw tabblad)</span></a></li>{% endfor %}
+        </ul>
+      {%- endif %}
+    </div>
+    {%- for kolom in kolommen %}
+      <nav aria-labelledby="footer-kolom-{{ loop.index }}">
+        <h2 id="footer-kolom-{{ loop.index }}" class="text-base font-semibold">{{ kolom.title }}</h2>
+        <ul class="mt-4 space-y-2 text-wit/80">
+          {%- for item in kolom.kolomLinks.all() %}
+            {%- if item.linkDoel.url ?? null %}<li><a href="{{ item.linkDoel.url }}" class="underline-offset-2 hover:text-wit hover:underline">{{ item.title ?: item.linkDoel.label }}</a></li>{% endif %}
+          {%- endfor %}
+        </ul>
+      </nav>
+    {%- endfor %}
+  </div>
+
+  <div class="border-t border-wit/15">
+    <div class="container-site py-6 text-klein text-wit/70">
+      <p>{{ (footer.onderschrift ?? null) ?: '© ' ~ now|date('Y') ~ ' ' ~ siteTitel }}</p>
+    </div>
+  </div>
+</footer>

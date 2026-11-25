@@ -1,0 +1,12 @@
+{% set oms = link.omschrijving is defined and link.omschrijving %}
+{% set klassen = 'linkrij group/rij transition-[background-color,translate] duration-300 ease-veer' %}
+<li>
+  {% if link.url %}<a class="{{ klassen }} hover:-translate-y-0.5" href="{{ link.url }}" target="_blank" rel="noopener">{% else %}<div class="{{ klassen }} linkrij--leeg"{% if oms %} tabindex="0"{% endif %}>{% endif %}
+    <span class="linkrij__tekst">
+      <span class="linkrij__titel">{{ link.titel }}</span>
+      {% if oms %}<span class="linkrij__oms grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity] duration-500 ease-veer group-hover/rij:grid-rows-[1fr] group-hover/rij:opacity-100 group-focus-visible/rij:grid-rows-[1fr] group-focus-visible/rij:opacity-100 [@media(hover:none)]:grid-rows-[1fr] [@media(hover:none)]:opacity-100"><span class="overflow-hidden"><span class="block pt-1">{{ link.omschrijving|raw }}</span></span></span>{% endif %}
+    </span>
+    {% if oms %}<span class="linkrij__info transition-opacity duration-300 group-hover/rij:opacity-0 [@media(hover:none)]:hidden" aria-hidden="true">i</span>{% endif %}
+    <span class="linkrij__type">{{ link.type }}</span>
+    {% if link.url %}<span class="linkrij__pijl"><img src="assets/icoon-pijl-rechts.svg" width="21" height="12" alt=""></span><span class="sr-only"> (opent in nieuw tabblad)</span></a>{% else %}</div>{% endif %}
+</li>

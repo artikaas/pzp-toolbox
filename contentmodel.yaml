@@ -1,0 +1,159 @@
+# Contentmodel van de PZP-toolbox (gebaseerd op De Bron V1.0).
+# Zie de blokkenspecificatie (Claude Doc) en docs/contentmodel.md voor de notatie.
+#
+# Eén bron voor twee dingen:
+# - Craft: `ddev craft site/setup/schema` maakt alles hieronder aan en vult een bestaande site aan.
+# - Prototype: `npm run prototype` gebruikt het om lege velden goed te vullen.
+#
+# Belangrijk bij wijzigen van een bestaande site:
+# - Velden toevoegen, labels aanpassen, keuzes toevoegen kan altijd.
+# - Een handle hernoemen of een veld weghalen doe je in Craft zelf, anders raakt content los.
+# - `link` is een gereserveerde handle in Craft; gebruik bijv. `linkDoel`.
+#
+# Afwijkingen van De Bron (zie docs/afwijkingen.md): geen blokken, pagina's en artikelen;
+# de toolbox is één vaste pagina met vijf stappen.
+
+plugins: [ckeditor]
+
+# Eén CKEditor-configuratie voor alle rijke tekst. Met tabellen (besluit: de matrix rollen en
+# verantwoordelijkheden blijft rijke tekst). Bewust zonder koppen en afbeeldingen.
+ckeditor:
+  naam: Standaard
+  toolbar: [bold, italic, '|', link, '|', bulletedList, numberedList, '|', insertTable, '|', sourceEditing]
+
+volumes:
+  beelden: Beelden
+  media: Media (logo's)
+  documenten: Documenten (pdf, Word)
+
+# ---------------------------------------------------------------------------- Velden
+velden:
+  # Teksten (De Bron)
+  kop:             { soort: tekst, naam: Kop, uitleg: 'Woorden tussen *sterretjes* krijgen de accentkleur.' }
+  intro:           { soort: tekst, naam: Intro, regels: 3 }
+  onderschrift:    { soort: tekst, naam: Onderschrift }
+  seoTitel:        { soort: tekst, naam: SEO-titel, max: 70, uitleg: 'Leeg = de sitetitel.' }
+  seoOmschrijving: { soort: tekst, naam: SEO-omschrijving, regels: 2, max: 160 }
+  siteTitel:       { soort: tekst, naam: Sitetitel (tabblad) }
+
+  # Teksten (toolbox)
+  kaarttitel:      { soort: tekst, naam: Korte titel, uitleg: 'Staat in de ballon in het wiel en in het menu. Leeg = de titel.' }
+  omschrijving:    { soort: tekst, naam: Omschrijving, regels: 2, uitleg: 'Verschijnt bij aanwijzen. Op touchschermen altijd zichtbaar.' }
+  conclusie:       { soort: tekst, naam: Conclusie, regels: 2, uitleg: 'Laatste regel van de checklist. Tekst tot en met de eerste dubbele punt wordt vet.' }
+  uitkomstKop:     { soort: tekst, naam: Kop boven de uitkomst }
+  naamDeel1:       { soort: tekst, naam: 'Naam, deel 1 (wit)', uitleg: 'Bijv. PZP.' }
+  naamDeel2:       { soort: tekst, naam: 'Naam, deel 2 (roze)', uitleg: 'Bijv. toolbox.' }
+  heroSubtitel:    { soort: tekst, naam: Ondertitel in het wiel }
+  documentTitel:   { soort: tekst, naam: Bovenregel in de panelen, uitleg: 'Bijv. PZP-toolbox regio Twente.' }
+  leesMeer:        { soort: tekst, naam: Knop Lees meer }
+  toolboxLabel:    { soort: tekst, naam: Label bij de gereedschapskist }
+  menuLabel:       { soort: tekst, naam: Menuknop }
+  voordatLabel:    { soort: tekst, naam: Label bij de ster }
+  tabInformatie:   { soort: tekst, naam: Tabblad Informatie }
+  tabHulpmiddelen: { soort: tekst, naam: Tabblad Hulpmiddelen }
+  tabWerkwijze:    { soort: tekst, naam: Kop Werkwijze per sector }
+  tipsKop:         { soort: tekst, naam: Kop van het tipskader }
+  leegTekst:       { soort: tekst, naam: Tekst bij een lege lijst }
+  antwoordNee:     { soort: tekst, naam: Antwoord 1 (Nee) }
+  antwoordTwijfel: { soort: tekst, naam: Antwoord 2 (Twijfel) }
+  antwoordJa:      { soort: tekst, naam: Antwoord 3 (Ja) }
+
+  # Rijke tekst
+  tekst:           { soort: rijketekst, naam: Tekst }
+  tips:            { soort: rijketekst, naam: Tips, uitleg: 'Elke alinea is een tip.' }
+  doel:            { soort: rijketekst, naam: Doel }
+  rolverdeling:    { soort: rijketekst, naam: Rolverdeling }
+  instructie:      { soort: rijketekst, naam: Instructie }
+  uitkomstNee:     { soort: rijketekst, naam: Uitkomst bij alle vragen Nee }
+  uitkomstAnders:  { soort: rijketekst, naam: Uitkomst bij Twijfel of Ja }
+
+  # Beeld en media
+  deelbeeld:       { soort: beeld, naam: Deelbeeld (social), volume: beelden, uitleg: '1200 x 630 px werkt het best.' }
+  logo:            { soort: beeld, naam: Logo, volume: media, uitleg: 'Bij voorkeur SVG.' }
+
+  # Links
+  hulpmiddelLink:    { soort: link, naam: Link of document, soorten: [url, asset], label: false, uitleg: 'Leeg = Link volgt.' }
+  werkwijzeDocument: { soort: link, naam: Werkwijzedocument, soorten: [url, asset], uitleg: 'Staat onder Werkwijze per sector bij elke stap zonder eigen werkwijzen.' }
+
+  # Keuzes en relaties
+  kolom:           { soort: keuze, naam: Kolom, opties: { links: Linkerkolom, rechts: Rechterkolom } }
+  kleur:           { soort: keuze, naam: Kleur van het poppetje, opties: { aubergine: Aubergine, roze: Roze } }
+  rollen:          { soort: entries, naam: Rollen, bronnen: [rollen], uitleg: 'Wie bij deze stap betrokken is. Bepaalt de poppetjes.' }
+
+  # Tabellen
+  signalen:        { soort: tabel, naam: Signalen, kolommen: { signaal: Signaal }, knop: Signaal toevoegen }
+
+  # Lijsten
+  toolboxStappen:    { soort: matrix, naam: Stappen, typen: [toolboxStap], min: 5, max: 5, uitleg: 'Het wiel is ontworpen voor vijf stappen. Volgorde = nummer en kleur.' }
+  groepen:           { soort: matrix, naam: Inhoud op de pagina, typen: [groep], min: 1, knop: Groep toevoegen }
+  achtergrond:       { soort: matrix, naam: Achtergrond, typen: [groep], knop: Kopje toevoegen }
+  werkwijzen:        { soort: matrix, naam: Werkwijze per sector, typen: [hulpmiddel], knop: Werkwijze toevoegen, uitleg: 'Leeg = het werkwijzedocument uit de global Toolbox.' }
+  hulpmiddelgroepen: { soort: matrix, naam: Hulpmiddelen en documenten, typen: [hulpmiddelgroep], knop: Groep toevoegen }
+  hulpmiddelen:      { soort: matrix, naam: Hulpmiddelen, typen: [hulpmiddel], min: 1, knop: Hulpmiddel toevoegen }
+  checklist:         { soort: matrix, naam: Checklist, typen: [checklist], max: 1, knop: Checklist toevoegen }
+  onderdelen:        { soort: matrix, naam: Onderdelen, typen: [onderdeel], min: 1, knop: Onderdeel toevoegen }
+  inhoud:            { soort: matrix, naam: Inhoud, typen: [tussenkop, tekstInhoud], min: 1, knop: Inhoud toevoegen }
+
+# ---------------------------------------------------------------------------- Typen
+typen:
+  rol:             { naam: Rol, icoon: user, velden: ['title | Label in de legenda', kleur] }
+  groep:           { naam: Groep, icoon: list, velden: ['title | Kop', 'tekst! | Tekst of lijst', kolom] }
+  hulpmiddel:      { naam: Hulpmiddel, icoon: toolbox, velden: ['title | Naam', omschrijving, hulpmiddelLink] }
+  hulpmiddelgroep: { naam: Groep hulpmiddelen, icoon: folder, velden: ['kop | Kop (mag leeg)', hulpmiddelen!] }
+  checklist:
+    naam: Checklist
+    icoon: list-check
+    velden: ['title | Titel', instructie, 'signalen! | Signalen', conclusie, uitkomstKop, uitkomstNee, uitkomstAnders]
+  tussenkop:       { naam: Tussenkop, icoon: heading, velden: ['title | Tussenkop'] }
+  tekstInhoud:     { naam: Tekst, icoon: paragraph, velden: ['tekst! | Tekst, lijst of tabel'] }
+  onderdeel:       { naam: Onderdeel, icoon: book-open, velden: ['title | Titel van het onderdeel', inhoud!] }
+
+  toolboxStap:
+    naam: Stap
+    icoon: shoe-prints
+    tabs:
+      Wiel: ['title | Titel', kaarttitel, rollen!]
+      Op de pagina: [groepen!, tips]
+      'Paneel: Informatie': [doel!, werkwijzen, achtergrond, rolverdeling]
+      'Paneel: Hulpmiddelen': [hulpmiddelgroepen, checklist]
+
+  toolbox:
+    naam: Toolbox
+    icoon: toolbox
+    tabs:
+      Stappen: [title, toolboxStappen!]
+      SEO: [seoTitel, seoOmschrijving]
+  voordat:
+    naam: Voordat je begint
+    icoon: circle-exclamation
+    tabs:
+      Inhoud: ['title | Titel van het paneel', 'intro | Ondertitel', onderdelen!]
+      Referenties: ['kop | Kop', 'tekst | Referenties']
+
+# ---------------------------------------------------------------------------- Secties
+secties:
+  toolbox: { naam: Toolbox, soort: single, typen: [toolbox], uri: __home__, template: _entries/home }
+  voordat: { naam: Voordat je begint, soort: single, typen: [voordat] }
+  rollen:  { naam: Rollen, soort: channel, typen: [rol] }
+
+# ---------------------------------------------------------------------------- Globals
+globals:
+  algemeen:
+    naam: Algemeen
+    tabs:
+      Algemeen: [siteTitel, 'seoOmschrijving | Standaard omschrijving', deelbeeld]
+  toolboxAlgemeen:
+    naam: Toolbox
+    tabs:
+      Naam en wiel: [naamDeel1, naamDeel2, 'kop | Kop in het wiel', heroSubtitel]
+      Panelen: [documentTitel, werkwijzeDocument]
+  labels:
+    naam: Labels
+    tabs:
+      Knoppen: [leesMeer, toolboxLabel, menuLabel, voordatLabel]
+      Panelen: [tabInformatie, tabHulpmiddelen, tabWerkwijze, tipsKop, leegTekst]
+      Checklist: [antwoordNee, antwoordTwijfel, antwoordJa]
+  footer:
+    naam: Footer
+    tabs:
+      Onderaan: [logo, 'onderschrift | Regel onderaan']

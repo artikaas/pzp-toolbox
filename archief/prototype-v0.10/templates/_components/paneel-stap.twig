@@ -1,0 +1,49 @@
+{% import '_components/macros.twig' as m %}
+{% set meer = stap.meer %}
+<dialog class="paneel translate-x-full open:translate-x-0 starting:open:translate-x-full transition-[translate,display,overlay] transition-discrete duration-600 ease-veer backdrop:bg-aubergine/0 open:backdrop:bg-aubergine/55 starting:open:backdrop:bg-aubergine/0 backdrop:transition-[background-color,display,overlay] backdrop:transition-discrete backdrop:duration-500 backdrop:ease-zacht" id="meer-{{ stap.nummer }}" aria-labelledby="meer-{{ stap.nummer }}-titel">
+  <div class="paneel__kop">
+    <div class="paneel__titelregel">
+      {{ m.tag(stap.nummer, true) }}
+      <div>
+        <p class="paneel__label">Stap {{ stap.nummer }}</p>
+        <h2 class="paneel__titel" id="meer-{{ stap.nummer }}-titel">{{ stap.titel }}</h2>
+      </div>
+    </div>
+    <button class="knop-vierkant paneel__sluit transition-[background-color,rotate] duration-300 ease-veer hover:rotate-90" type="button" data-close aria-label="Sluiten"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16" stroke="#6F0D3B" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+    <div class="stappenbalk" role="tablist" aria-label="Onderdelen van stap {{ stap.nummer }}">
+      {% for tab in [['info', globals.tabInformatie], ['hulpmiddelen', globals.tabHulpmiddelen]] %}
+      <button type="button" role="tab" class="stappenbalk__knop transition-colors duration-300 ease-zacht" id="meer-{{ stap.nummer }}-tab-{{ tab[0] }}" aria-controls="meer-{{ stap.nummer }}-{{ tab[0] }}" aria-selected="{{ loop.first ? 'true' : 'false' }}" tabindex="{{ loop.first ? '0' : '-1' }}" data-tab="{{ tab[0] }}">{% if tab[0] == 'hulpmiddelen' %}{% include '_svg/icoon-toolbox.svg' %}{% endif %}{{ tab[1] }}</button>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="paneel__inhoud transition-[opacity,translate] duration-700 delay-150 ease-veer starting:opacity-0 starting:translate-y-4">
+  <section class="paneel__body paneel__tab transition-[opacity,translate] duration-500 ease-veer starting:opacity-0 starting:translate-y-2" role="tabpanel" id="meer-{{ stap.nummer }}-info" aria-labelledby="meer-{{ stap.nummer }}-tab-info" tabindex="0">
+    <div class="paneel__hoofd">
+      <p class="paneel__doel">{{ stap.doel|raw }}</p>
+      <section class="paneel__sectie" id="meer-{{ stap.nummer }}-werkwijze"><h3>{{ globals.tabWerkwijze }}</h3>
+        <ul class="links">{% for w in (meer.werkwijzen|length ? meer.werkwijzen : [globals.werkwijzeDocument]) %}{% include '_components/linkrij.twig' with { link: w } %}{% endfor %}</ul>
+      </section>
+      {% for groep in meer.achtergrond %}
+      <section class="paneel__sectie"><h3>{{ groep.kop }}</h3><ul class="lijst">{% for item in groep.items %}<li>{{ item|raw }}</li>{% endfor %}</ul></section>
+      {% endfor %}
+    </div>
+    <aside class="paneel__zij" aria-label="Rolverdeling">
+      <div class="rolverdeling">
+        <p class="rolverdeling__kop">Rolverdeling</p>
+        <ul>{% for r in meer.rolverdeling %}<li>{{ r|raw }}</li>{% endfor %}</ul>
+        <ul class="legenda legenda--links">{% for rol in stap.rollen %}<li>{{ m.rolicoon(globals.rollen[rol].kleur) }}{{ globals.rollen[rol].label }}</li>{% endfor %}</ul>
+      </div>
+    </aside>
+  </section>
+  <section class="paneel__tab paneel__tab--breed transition-[opacity,translate] duration-500 ease-veer starting:opacity-0 starting:translate-y-2" role="tabpanel" id="meer-{{ stap.nummer }}-hulpmiddelen" aria-labelledby="meer-{{ stap.nummer }}-tab-hulpmiddelen" tabindex="0" hidden>
+<h3 class="sr-only">Hulpmiddelen en documenten</h3>
+        {% for groep in meer.hulpmiddelen %}
+          {% if groep.kop %}<h4>{{ groep.kop }}</h4>{% endif %}
+          <ul class="links">{% for l in groep.links %}{% include '_components/linkrij.twig' with { link: l } %}{% endfor %}</ul>
+        {% else %}{% if not meer.checklist %}<p class="paneel__leeg">{{ globals.leegTekst }}</p>{% endif %}
+        {% endfor %}
+        {% if meer.checklist %}{% include '_components/checklist.twig' with { c: meer.checklist, nr: stap.nummer } %}{% endif %}
+      
+  </section>
+  </div>
+</dialog>

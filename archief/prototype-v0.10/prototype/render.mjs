@@ -1,0 +1,21 @@
+// Rendert de Twig-templates statisch met de inhoud uit seed/content.json naar prototype/dist.
+import Twig from 'twig';
+import fs from 'node:fs';
+import path from 'node:path';
+import { execSync } from 'node:child_process';
+const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const dist = path.join(root, 'prototype/dist');
+fs.rmSync(dist, { recursive: true, force: true });
+fs.mkdirSync(dist, { recursive: true });
+Twig.cache(false);
+const data = JSON.parse(fs.readFileSync(path.join(root, 'seed/content.json'), 'utf8'));
+const tpl = Twig.twig({ path: path.join(root, 'templates/index.twig'), base: path.join(root, 'templates'), async: false, strict_variables: false });
+const html = tpl.render(data);
+fs.writeFileSync(path.join(dist, 'index.html'), html);
+for (const [van, naar] of [['src/css', 'css'], ['src/js', 'js'], ['web/fonts', 'fonts'], ['web/assets', 'assets']]) fs.cpSync(path.join(root, van), path.join(dist, naar), { recursive: true });
+execSync(`npx @tailwindcss/cli -i src/css/app.css -o prototype/dist/css/app.css --minify`, { cwd: root, stdio: 'pipe' });
+fs.writeFileSync(path.join(dist, '_headers'), '/*\n  X-Robots-Tag: noindex, nofollow\n');
+const ids = new Set([...html.matchAll(/id="([^"]+)"/g)].map((m) => m[1]));
+const kapot = [...html.matchAll(/(?:href="#|data-open=")([^"]+)"/g)].map((m) => m[1]).filter((id) => !ids.has(id));
+console.log(`index.html: ${(html.length / 1024).toFixed(0)} kB, ${data.stappen.length} stappen`);
+console.log(kapot.length ? `Kapotte interne links: ${[...new Set(kapot)].join(', ')}` : 'Geen kapotte interne links');

@@ -1,0 +1,74 @@
+{#-
+  Afbeelding met responsive WebP-varianten en een nette placeholder als er (nog) geen asset is.
+
+  Parameters:
+  - image        Asset of null
+  - alt          alt-tekst; standaard de alt van de asset. Geef '' mee voor decoratief beeld.
+  - layout       'fill' (vult de relative ouder, uitsnede via focuspunt) of 'fixed' (vaste maat, object-contain)
+  - width/height bij 'fixed': weergavemaat in px (standaard de maat van het bestand)
+  - fit          bij 'fixed': [maxBreedte, maxHoogte]; groot beeld wordt passend verkleind met behoud van verhouding (nooit vergroot)
+  - widths       srcset-breedtes bij 'fill'
+  - sizes        sizes-attribuut bij 'fill'
+  - priority     true = eager laden + fetchpriority high (headers)
+  - class        extra classes
+  - placeholder  'grey' (standaard), 'light' of 'none'
+  - position     object-position; standaard het focuspunt van de asset
+-#}
+{%- set image = image ?? null -%}
+{%- set layout = layout ?? 'fill' -%}
+{%- set alt = alt is defined and alt is not null ? alt : (image ? (image.alt ?? '') : '') -%}
+{%- set priority = priority ?? false -%}
+{%- set class = class ?? '' -%}
+{%- set placeholder = placeholder ?? 'grey' -%}
+{%- set isSvg = image and image.extension|lower == 'svg' -%}
+
+{%- if layout == 'fill' -%}
+  {%- set widths = widths ?? [480, 768, 1024, 1440, 1920] -%}
+  {%- set sizes = sizes ?? '100vw' -%}
+  {%- set focus = image ? image.getFocalPoint(true) : null -%}
+  {%- set position = position ?? focus ?: 'center' -%}
+  <div class="pointer-events-none absolute inset-0 overflow-hidden {{ class }}"{% if not alt %} aria-hidden="true"{% endif %}>
+    {%- if image -%}
+      {%- if isSvg -%}
+        <img src="{{ image.url }}" alt="{{ alt }}" loading="{{ priority ? 'eager' : 'lazy' }}" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ position }}">
+      {%- else -%}
+        {%- set usable = widths|filter(w => w <= image.width) -%}
+        {%- set usable = usable is empty ? [image.width] : usable -%}
+        <img
+          src="{{ image.getUrl({ width: usable|last, format: 'webp' }) }}"
+          srcset="{{ image.getSrcset(usable|map(w => w ~ 'w'), { format: 'webp' }) }}"
+          sizes="{{ sizes }}"
+          width="{{ image.width }}"
+          height="{{ image.height }}"
+          alt="{{ alt }}"
+          loading="{{ priority ? 'eager' : 'lazy' }}"
+          decoding="async"
+          {% if priority %}fetchpriority="high"{% endif %}
+          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ position }}">
+      {%- endif -%}
+    {%- elseif placeholder != 'none' -%}
+      <div class="absolute inset-0 {{ placeholder == 'light' ? 'bg-vlak' : 'bg-placeholder' }}"></div>
+    {%- endif -%}
+  </div>
+{%- else -%}
+  {%- if image and (fit ?? null) and image.width and image.height -%}
+    {%- set scale = min(1, fit[0] / image.width, fit[1] / image.height) -%}
+    {%- set width = (image.width * scale)|round(1) -%}
+    {%- set height = (image.height * scale)|round(1) -%}
+  {%- elseif fit ?? null -%}
+    {%- set width = fit[0] -%}
+    {%- set height = fit[1] -%}
+  {%- endif -%}
+  {%- set width = width ?? (image ? image.width : 160) -%}
+  {%- set height = height ?? (image ? image.height : 160) -%}
+  {%- if image -%}
+    {%- if isSvg -%}
+      {%- set src = image.url -%}
+    {%- else -%}
+      {%- set src = image.getUrl({ width: min((width * 2)|round, image.width), format: 'webp' }) -%}
+    {%- endif -%}
+    <img src="{{ src }}" alt="{{ alt }}" width="{{ width|round }}" height="{{ height|round }}" loading="{{ priority ? 'eager' : 'lazy' }}" decoding="async" class="{{ class }}" style="width:{{ width }}px;max-width:100%;height:auto;aspect-ratio:{{ width }}/{{ height }};object-fit:contain;">
+  {%- elseif placeholder != 'none' -%}
+    <span class="inline-flex max-w-full items-center justify-center rounded border border-dashed border-current p-1 text-center font-sans text-xs leading-tight opacity-60 {{ class }}" style="width:{{ width }}px;max-width:100%;aspect-ratio:{{ width }}/{{ height }};" role="img" aria-label="{{ alt }}">{{ alt }}</span>
+  {%- endif -%}
+{%- endif -%}

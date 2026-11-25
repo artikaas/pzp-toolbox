@@ -1,0 +1,20 @@
+<section class="paneel__sectie checklist" data-checklist>
+  <h3>{{ c.titel }}</h3>
+  <p class="checklist__instructie">{{ c.instructie|raw }}</p>
+  <div class="checklist__tabel" role="group" aria-label="{{ c.titel }}">
+    <div class="checklist__rij checklist__rij--kop" aria-hidden="true"><span></span>{% for k in c.kolommen %}<span>{{ k }}</span>{% endfor %}</div>
+    {% for s in c.signalen|merge([c.conclusie]) %}
+    <fieldset class="checklist__rij{{ loop.last ? ' checklist__rij--conclusie' }}">
+      <legend>{{ s|raw }}</legend>
+      {% set rij = loop.index %}
+      {% for k in c.kolommen %}<label><input type="radio" name="cl{{ nr }}-{{ rij }}" value="{{ loop.index }}"><span class="sr-only">{{ k }}</span></label>{% endfor %}
+    </fieldset>
+    {% endfor %}
+  </div>
+  <div class="checklist__uitkomst" aria-live="polite">
+    <h4>{{ c.uitkomst.kop }}</h4>
+    <div class="uitkomst" data-uitkomst="nee"><p><strong>Alle vragen 'Nee':</strong> {{ c.uitkomst.nee|raw }}</p></div>
+    <div class="uitkomst" data-uitkomst="anders"><p><strong>{{ c.uitkomst.anders_kop }}:</strong></p><ul class="lijst">{% for a in c.uitkomst.anders %}<li>{{ a|raw }}</li>{% endfor %}</ul></div>
+  </div>
+  <button type="button" class="tekstknop" data-wis>Wis antwoorden</button>
+</section>

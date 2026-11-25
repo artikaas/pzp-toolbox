@@ -1,0 +1,24 @@
+{
+  "name": "pzp-toolbox",
+  "version": "0.11.0",
+  "private": true,
+  "type": "module",
+  "description": "Artica website-starter: frontend (Vite + Tailwind) en statisch prototype van de Craft-templates",
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "vite build",
+    "prototype": "vite build && node prototype/render.mjs",
+    "prototype:serve": "node prototype/serve.mjs",
+    "screenshots": "node prototype/screenshots.mjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3",
+    "twing": "^7.3.1",
+    "vite": "^7.1.0",
+    "yaml": "^2.8.0"
+  },
+  "optionalDependencies": {
+    "playwright-core": "^1.55.0"
+  }
+}

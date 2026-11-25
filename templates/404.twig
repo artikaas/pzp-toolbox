@@ -1,0 +1,16 @@
+{#- Pagina niet gevonden. -#}
+{%- extends '_layouts/base' -%}
+{%- set paginaTitel = 'Pagina niet gevonden' -%}
+{%- set noindex = true -%}
+{%- block content -%}
+  <section class="bg-vlak" aria-labelledby="pagina-titel">
+    <div class="container-site py-24 md:py-32">
+      <div class="max-w-2xl">
+        <p class="mb-3 text-klein font-semibold uppercase tracking-wider text-tekst-zacht">Foutcode 404</p>
+        <h1 id="pagina-titel" class="text-h1 text-primair">Deze pagina bestaat niet (meer)</h1>
+        <p class="mt-5 text-lead text-tekst-zacht">Misschien is de pagina verplaatst of klopt de link niet. Ga terug naar de homepage of gebruik het menu.</p>
+        <p class="mt-8"><a href="{{ siteUrl }}" class="btn"><span>Naar de homepage</span>{% include '_components/icons/pijl-rechts' only %}</a></p>
+      </div>
+    </div>
+  </section>
+{%- endblock -%}

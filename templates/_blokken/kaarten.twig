@@ -1,0 +1,31 @@
+{#- Kaarten met beeld, titel, tekst en link. Met een link is de hele kaart klikbaar. -#}
+{%- import '_components/macros' as m -%}
+{%- set kaarten = blok.kaartenItems.all() -%}
+<section class="container-site" {% if blok.kop %}aria-labelledby="blok-{{ blok.id }}"{% endif %}>
+  {%- if blok.kop or blok.intro %}
+    <div class="mb-10 max-w-3xl" data-reveal>
+      {%- if blok.kop %}<h2 id="blok-{{ blok.id }}" class="text-h2 text-primair">{{ m.accent(blok.kop) }}</h2>{% endif %}
+      {%- if blok.intro %}<p class="mt-4 text-lead text-tekst-zacht">{{ blok.intro|nl2br }}</p>{% endif %}
+    </div>
+  {%- endif %}
+  <ul class="grid gap-6 sm:grid-cols-2 {{ kaarten|length == 2 or kaarten|length == 4 ? '' : 'lg:grid-cols-3' }}">
+    {%- for kaart in kaarten %}
+      {%- set link = kaart.linkDoel %}
+      <li class="group relative flex flex-col overflow-hidden rounded-kaart border border-rand bg-wit transition-shadow {{ link and link.url ? 'hover:shadow-lg' }}" data-reveal>
+        {%- set beeld = kaart.afbeelding.one() %}
+        {%- if beeld %}<div class="relative aspect-[3/2] bg-vlak">{% include '_components/image' with { image: beeld, alt: '', sizes: '(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw', widths: [400, 640, 800, 1200] } only %}</div>{% endif %}
+        <div class="flex flex-1 flex-col gap-3 p-6">
+          <h3 class="text-h3 text-primair">
+            {%- if link and link.url -%}
+              <a href="{{ link.url }}" class="after:absolute after:inset-0 group-hover:underline"{% if link.target == '_blank' %} target="_blank" rel="noopener"{% endif %}>{{ kaart.title }}</a>
+            {%- else -%}
+              {{ kaart.title }}
+            {%- endif -%}
+          </h3>
+          {%- if kaart.tekstPlat %}<p class="text-tekst-zacht">{{ kaart.tekstPlat|nl2br }}</p>{% endif %}
+          {%- if link and link.url %}<span class="mt-auto inline-flex items-center gap-2 pt-2 font-semibold text-primair" aria-hidden="true">{{ link.label ?: 'Lees meer' }}{% include '_components/icons/pijl-rechts' with { class: 'size-4 transition-transform group-hover:translate-x-1' } only %}</span>{% endif %}
+        </div>
+      </li>
+    {%- endfor %}
+  </ul>
+</section>

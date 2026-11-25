@@ -1,0 +1,56 @@
+{#- Header met logo, hoofdmenu (global Navigatie) en een knop. Onder 1024px een uitklapmenu (src/js/modules/menu.js). -#}
+{%- import '_components/macros' as m -%}
+{%- set menu = (navigatie.hoofdmenu ?? null) ? navigatie.hoofdmenu.all() : [] -%}
+{%- set menuKnop = navigatie.menuKnop ?? null -%}
+{%- set logo = (algemeen.logo ?? null) ? algemeen.logo.one() : null -%}
+<header class="relative z-30 border-b border-rand bg-wit">
+  <div class="container-site flex h-[4.5rem] items-center justify-between gap-6">
+    <a href="{{ siteUrl }}" class="flex shrink-0 items-center" aria-label="{{ siteTitel }}, naar de homepage">
+      {%- if logo %}
+        {% include '_components/image' with { image: logo, layout: 'fixed', fit: [180, 44], alt: '', priority: true } only %}
+      {%- else %}
+        <span class="font-kop text-xl font-bold text-primair">{{ siteTitel }}</span>
+      {%- endif %}
+    </a>
+
+    {%- if menu %}
+      <nav aria-label="Hoofdmenu" class="hidden lg:block">
+        <ul class="flex items-center gap-8">
+          {%- for item in menu %}
+            {%- set url = item.linkDoel.url ?? null %}
+            {%- if url %}
+              <li><a href="{{ url }}" class="font-semibold text-primair underline-offset-8 hover:underline aria-[current=page]:underline aria-[current=page]:decoration-accent aria-[current=page]:decoration-2" aria-current="{{ m.isCurrent(url) ?: 'false' }}">{{ item.title ?: item.linkDoel.label }}</a></li>
+            {%- endif %}
+          {%- endfor %}
+        </ul>
+      </nav>
+    {%- endif %}
+
+    <div class="flex items-center gap-3">
+      {%- if menuKnop and menuKnop.url %}{% include '_components/link' with { link: menuKnop, class: 'hidden lg:inline-flex' } only %}{% endif %}
+      {%- if menu or (menuKnop and menuKnop.url) %}
+        <button type="button" class="inline-flex size-11 items-center justify-center rounded-full text-primair hover:bg-vlak lg:hidden" aria-expanded="false" aria-controls="mobiel-menu" data-menu-toggle>
+          <span data-icoon-open>{% include '_components/icons/menu' only %}</span>
+          <span data-icoon-dicht hidden>{% include '_components/icons/sluiten' only %}</span>
+          <span class="sr-only">Menu</span>
+        </button>
+      {%- endif %}
+    </div>
+  </div>
+
+  {%- if menu or (menuKnop and menuKnop.url) %}
+    <div id="mobiel-menu" class="absolute inset-x-0 top-full h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-rand bg-wit lg:hidden" hidden>
+      <nav aria-label="Hoofdmenu (mobiel)" class="container-site py-8">
+        <ul class="flex flex-col gap-1">
+          {%- for item in menu %}
+            {%- set url = item.linkDoel.url ?? null %}
+            {%- if url %}
+              <li><a href="{{ url }}" class="block py-3 text-h3 font-semibold text-primair aria-[current=page]:text-accent-donker" aria-current="{{ m.isCurrent(url) ?: 'false' }}">{{ item.title ?: item.linkDoel.label }}</a></li>
+            {%- endif %}
+          {%- endfor %}
+        </ul>
+        {%- if menuKnop and menuKnop.url %}<div class="mt-8">{% include '_components/link' with { link: menuKnop } only %}</div>{% endif %}
+      </nav>
+    </div>
+  {%- endif %}
+</header>

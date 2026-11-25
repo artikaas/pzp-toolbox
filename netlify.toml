@@ -1,0 +1,17 @@
+# Statisch prototype op Netlify (via Git). Drag-and-drop kan ook: sleep de map prototype/dist naar app.netlify.com/drop.
+[build]
+  command = "npm run prototype"
+  publish = "prototype/dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[headers]]
+  for = "/dist/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"

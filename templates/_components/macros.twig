@@ -1,0 +1,36 @@
+{#- Kleine hulpmacro's. Importeren met: {% import '_components/macros' as m %} -#}
+
+{#- Geeft 'page' terug als de URL de huidige pagina (of een ouder ervan) is. Gebruik: aria-current="{{ m.isCurrent(url) }}" -#}
+{% macro isCurrent(url) -%}
+  {%- set base = siteUrl|trim('/', 'right') -%}
+  {%- set here = '/' ~ (craft.app.request.pathInfo|trim('/')) -%}
+  {%- set here = here == '/' ? '/' : here ~ '/' -%}
+  {%- set target = (url ?? '')|split('#')|first|split('?')|first -%}
+  {%- set target = (base ? target|replace({ (base): '' }) : target)|trim('/') -%}
+  {%- set target = target ? '/' ~ target ~ '/' : '/' -%}
+  {%- if target == '/' -%}{{ here == '/' ? 'page' : '' }}{%- else -%}{{ here starts with target ? 'page' : '' }}{%- endif -%}
+{%- endmacro %}
+
+{#- Rich text uit CKEditor. -#}
+{% macro rich(value, class) -%}
+  {%- if value is not empty -%}<div class="rich-text {{ class }}">{{ value|raw }}</div>{%- endif -%}
+{%- endmacro %}
+
+{#-
+  Tekst met accent: woorden tussen *sterretjes* krijgen de accentkleur (bijv. 'Samen *verder*').
+  kleur: Tailwind-class voor het accent (standaard text-accent).
+  Let op: niet escapen vóór de split; autoescape doet dat per deel. Voor aria-labels: kop|replace({'*': ''}).
+-#}
+{% macro accent(value, kleur) -%}
+  {%- set kleur = kleur ?? 'text-accent' -%}
+  {%- set delen = (value ?? '')|split('*') -%}
+  {%- for deel in delen -%}
+    {%- if loop.index is even and not loop.last -%}<span class="{{ kleur }}">{{ deel }}</span>{%- elseif loop.index is even -%}*{{ deel }}{%- else -%}{{ deel }}{%- endif -%}
+  {%- endfor -%}
+{%- endmacro %}
+
+{#- Datum als '12 maart 2026'. -#}
+{% macro datum(d) -%}
+  {%- set maanden = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'] -%}
+  {%- if d %}{{ d|date('j') }} {{ maanden[(d|date('n')) - 1] }} {{ d|date('Y') }}{% endif -%}
+{%- endmacro %}

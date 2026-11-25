@@ -1,0 +1,42 @@
+{#-
+  Paginaheader voor home, pagina's en artikelen.
+  - entry   de entry (velden: kop, intro, heroAfbeelding, heroKnop)
+  - crumbs  kruimelpad (lijst van { label, url }); leeg = geen kruimelpad
+  - groot   true = grote kop (home)
+  - meta    regel boven de kop (bijv. datum bij een artikel)
+  Met headerbeeld: beeld over de volle breedte met de kop linksonder. Zonder: kop op een licht vlak.
+-#}
+{%- import '_components/macros' as m -%}
+{%- set kop = (entry.kop ?? null) ?: entry.title -%}
+{%- set beeld = entry.heroAfbeelding.one() ?? null -%}
+{%- set groot = groot ?? false -%}
+{%- set crumbs = crumbs ?? [] -%}
+{%- set knop = entry.heroKnop ?? null -%}
+
+{%- if beeld %}
+<section class="op-donker relative isolate flex items-end overflow-hidden bg-primair text-wit {{ groot ? 'min-h-[32rem] md:min-h-[40rem] lg:min-h-[44rem]' : 'min-h-[26rem] md:min-h-[32rem]' }}" aria-labelledby="pagina-titel" data-hero>
+  {% include '_components/image' with { image: beeld, alt: '', priority: true, sizes: '100vw', widths: [640, 1024, 1440, 1920, 2560], class: '-z-10' } only %}
+  <div class="absolute inset-0 -z-10 bg-gradient-to-t from-primair-donker/90 via-primair-donker/45 to-primair-donker/10"></div>
+  <div class="container-site pb-12 pt-28 md:pb-16 lg:pb-20">
+    {%- if crumbs %}{% include '_components/breadcrumbs' with { items: crumbs, class: 'mb-6 text-wit/80' } only %}{% endif %}
+    <div class="max-w-3xl">
+      {%- if meta ?? null %}<p class="mb-3 text-klein font-semibold uppercase tracking-wider text-wit/80">{{ meta }}</p>{% endif %}
+      <h1 id="pagina-titel" class="{{ groot ? 'text-display' : 'text-h1' }}">{{ m.accent(kop) }}</h1>
+      {%- if entry.intro ?? null %}<p class="mt-5 max-w-2xl text-lead text-wit/90">{{ entry.intro|nl2br }}</p>{% endif %}
+      {%- if knop and knop.url %}<div class="mt-8">{% include '_components/link' with { link: knop } only %}</div>{% endif %}
+    </div>
+  </div>
+</section>
+{%- else %}
+<section class="bg-vlak" aria-labelledby="pagina-titel" data-hero>
+  <div class="container-site {{ groot ? 'py-20 md:py-28' : 'pb-14 pt-10 md:pb-20 md:pt-14' }}">
+    {%- if crumbs %}{% include '_components/breadcrumbs' with { items: crumbs, class: 'mb-8 text-tekst-zacht' } only %}{% endif %}
+    <div class="max-w-3xl">
+      {%- if meta ?? null %}<p class="mb-3 text-klein font-semibold uppercase tracking-wider text-tekst-zacht">{{ meta }}</p>{% endif %}
+      <h1 id="pagina-titel" class="text-primair {{ groot ? 'text-display' : 'text-h1' }}">{{ m.accent(kop) }}</h1>
+      {%- if entry.intro ?? null %}<p class="mt-5 max-w-2xl text-lead text-tekst-zacht">{{ entry.intro|nl2br }}</p>{% endif %}
+      {%- if knop and knop.url %}<div class="mt-8">{% include '_components/link' with { link: knop } only %}</div>{% endif %}
+    </div>
+  </div>
+</section>
+{%- endif %}

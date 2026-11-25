@@ -1,0 +1,12 @@
+{#- Kaart voor een artikel in overzichten. De hele kaart is klikbaar via de link op de titel. -#}
+{%- import '_components/macros' as m -%}
+<article class="group relative flex h-full flex-col overflow-hidden rounded-kaart border border-rand bg-wit transition-shadow hover:shadow-lg">
+  <div class="relative aspect-[3/2] bg-vlak">
+    {% include '_components/image' with { image: artikel.heroAfbeelding.one() ?? null, alt: '', sizes: '(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw', widths: [400, 640, 800, 1200], placeholder: 'light' } only %}
+  </div>
+  <div class="flex flex-1 flex-col gap-3 p-6">
+    {%- if artikel.postDate ?? null %}<p class="text-klein text-tekst-zacht"><time datetime="{{ artikel.postDate|date('Y-m-d') }}">{{ m.datum(artikel.postDate) }}</time></p>{% endif %}
+    <h3 class="text-h3 text-primair"><a href="{{ artikel.url }}" class="after:absolute after:inset-0 group-hover:underline">{{ artikel.title }}</a></h3>
+    {%- if artikel.samenvatting ?? null %}<p class="text-tekst-zacht">{{ artikel.samenvatting }}</p>{% endif %}
+  </div>
+</article>

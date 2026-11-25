@@ -1,0 +1,57 @@
+<!-- PZP Tool v1 | Figma wIUDSc3BrP6FUHJdvuEqbg | Redesign V0.4 > PZP Tool v1 (174:423) | uitgelezen 2026-11-19 | basis voor wijzigingsdetectie (fase 4) -->
+<frame id="174:423" name="PZP Tool v1" x="5473" y="2" width="1440" height="4521.66943359375">
+  <instance id="174:424" name="nav/Default" x="0" y="0" width="1440" height="180.16944885253906" />
+  <frame id="174:425" name="section" x="0" y="180.16944885253906" width="1440" height="1176">
+    <frame id="174:426" name="CENTER" x="1068" y="912" width="696" height="696">
+      <frame id="174:427" name="Cirkel" x="-0.500244140625" y="-96.56356811523438" width="1512" height="792">
+        <ellipse id="262:5870" name="Ellipse 42" x="664.5" y="771.7330322265625" width="640" height="640" />
+        <frame id="174:428" name="Frame 17" hidden="true" width="696.0001220703125" height="696.0000610351562" />
+        <frame id="174:435" name="Frame 18" width="696.0001220703125" height="696.0000610351562">
+          <vector id="174:436" name="Subtract" /><vector id="174:437" name="Subtract" /><vector id="174:438" name="Subtract" />
+          <vector id="174:439" name="Union" /><ellipse id="174:440" name="Ellipse 41" /><vector id="174:441" name="Subtract" />
+        </frame>
+        <frame id="174:442" name="Group 15" hidden="true" />
+        <vector id="174:447" name="Subtract" width="1117.5" height="791.568359375" />
+      </frame>
+      <frame id="174:448" name="Header" x="576" y="496.5" width="456" height="259">
+        <text id="174:449" name="TIJDIG SPREKEN OVER DE LAATSTE LEVENSFASE" width="380" height="215" />
+        <text id="174:450" name="Proactieve zorgplanning" width="277" height="28" />
+      </frame>
+      <rounded-rectangle id="174:451" name="BORDER" hidden="true" />
+      <frame id="174:452" name="Frame 246" note="fase 1 kaart"><frame id="247:2304" name="Ballon"><text id="247:2305" /><text id="247:2306" /><frame id="247:2309" name="Frame 16" /></frame><instance id="174:453" name="Base" /></frame>
+      <frame id="174:456" name="Frame 245" note="fase 2 kaart"><frame id="247:2347" name="Ballon"><text id="247:2348" /><text id="247:2349" /><frame id="247:2352" name="Frame 16" /></frame><instance id="174:457" name="Base" /></frame>
+      <frame id="174:460" name="Frame 248" note="fase 3 kaart"><instance id="174:463" name="Base" /><frame id="233:1598" name="Ballon"><text id="233:1599" /><text id="233:1600" /><text id="233:1603" /><frame id="247:2328" name="Frame 16" /></frame></frame>
+      <frame id="174:464" name="Frame 247" note="fase 4 kaart"><instance id="174:467" name="Base" /><frame id="233:1641" name="Ballon"><text id="233:1642" /><text id="233:1643" /><frame id="233:2276" name="Frame 16" /></frame></frame>
+      <frame id="247:4814" name="Frame 271" width="116" height="116"><star id="247:4812" name="Star 2" /><text id="247:4817" name="Heading Text" /></frame>
+    </frame>
+  </frame>
+  <frame id="174:468" name="section" x="0" y="1356.16943359375" width="1440" height="2706.5">
+    <frame id="174:469" name="Content Block" hidden="true" />
+    <frame id="174:475" name="Frame 57" x="200" y="128" width="1040" height="2482.5">
+      <frame id="174:476" name="Frame 51" note="stap 01 markeren en starten" y="0" width="1040" height="571">
+        <text id="174:484" /><instance id="233:1368" name="Base" /><text id="174:485" /><text id="233:1334" /><text id="233:1336" /><text id="233:1337" /><instance id="233:1464" name="button" />
+        <frame id="247:4305" name="Frame 149"><frame id="247:4306" name="button" /><text id="247:4311" /><text id="247:4312" /><frame id="247:4313" name="Frame 260" /></frame>
+      </frame>
+      <frame id="233:1469" name="Frame 57" note="stap 02 bespreken" y="635" width="1040" height="775">
+        <text id="233:1472" /><instance id="233:1473" name="Base" /><text id="233:1476" /><text id="233:1477" /><text id="247:4716" /><text id="247:4717" /><text id="247:4748" /><text id="247:4749" /><text id="247:4738" /><text id="247:4739" /><instance id="233:1481" name="button" />
+        <frame id="247:4279" name="Frame 149"><frame id="247:5465" name="button" /><text id="247:4285" /><text id="247:4286" /><frame id="247:4287" name="Frame 260" /></frame>
+      </frame>
+      <frame id="233:1503" name="Frame 58" note="stap 03 vastleggen" y="1474" width="1040" height="555">
+        <text id="233:1506" /><instance id="233:1507" name="Base" /><text id="233:1510" /><text id="233:1511" /><text id="247:4753" /><text id="247:4754" /><text id="233:1513" /><text id="233:1514" /><instance id="233:1515" name="button" />
+        <frame id="247:4253" name="Frame 149"><frame id="247:5473" name="button" /><text id="247:4259" /><text id="247:4260" /><frame id="247:4261" name="Frame 260" /></frame>
+      </frame>
+      <frame id="233:1537" name="Frame 59" note="stap 04 uitwisselen" y="2093" width="1040" height="389.5">
+        <text id="233:1540" /><instance id="233:1541" name="Base" /><text id="233:1544" /><text id="247:4771" /><text id="247:4788" /><text id="247:4796" /><instance id="233:1549" name="button" />
+        <frame id="233:1550" name="Frame 148"><frame id="247:5481" name="button" /><text id="233:1552" /><text id="233:1553" /><frame id="247:2435" name="Frame 260" /></frame>
+      </frame>
+      <frame id="174:510" name="Frame 56" hidden="true" />
+    </frame>
+  </frame>
+  <frame id="174:519" name="footer" x="0" y="4062.66943359375" width="1440" height="459">
+    <frame id="174:520" name="section" hidden="true" note="CTA: Supporting text + button" />
+    <frame id="174:536" name="footer" width="1440" height="400">
+      <instance id="247:2550" name="ZZSD - logo" width="204" height="109" />
+      <text id="174:561" name="Collaboration Text" width="1280" height="51" />
+    </frame>
+  </frame>
+</frame>

@@ -1,0 +1,25 @@
+{#-
+  Link uit een Link-veld (Craft 5). Rendert niets als de link leeg is.
+  - link    de waarde van het Link-veld (bijv. blok.linkDoel)
+  - label   eigen tekst; standaard het label uit het veld, anders de URL
+  - stijl   'knop' (standaard), 'rand' (knop met rand), 'tekst' (tekstlink met pijl) of 'kaal'
+  - class   extra classes
+  Externe links en links met 'nieuw tabblad' krijgen target="_blank" en een melding voor schermlezers.
+-#}
+{%- set link = link ?? null -%}
+{%- if link and link.url -%}
+  {%- set stijl = stijl ?? 'knop' -%}
+  {%- set tekst = (label ?? null) ?: (link.label ?: link.url|replace({'https://': '', 'http://': '', 'mailto:': ''})|trim('/')) -%}
+  {%- set extern = link.target == '_blank' or (link.type == 'url' and link.url starts with 'http') -%}
+  {%- set classes = {
+    knop: 'btn',
+    rand: 'btn btn--rand',
+    tekst: 'group inline-flex items-center gap-2 font-semibold underline-offset-4 hover:underline',
+    kaal: '',
+  }[stijl] ?? 'btn' -%}
+  <a href="{{ link.url }}" class="{{ classes }} {{ class ?? '' }}"{% if extern %} target="_blank" rel="noopener"{% endif %}>
+    <span>{{ tekst }}</span>
+    {%- if extern %}<span class="sr-only"> (opent in een nieuw tabblad)</span>{% endif -%}
+    {%- if stijl != 'kaal' %}{% include '_components/icons/' ~ (extern ? 'extern' : 'pijl-rechts') only %}{% endif -%}
+  </a>
+{%- endif -%}

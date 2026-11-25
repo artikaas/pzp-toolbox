@@ -1,0 +1,159 @@
+@import 'tailwindcss';
+
+/* Tailwind scant de Twig-templates op gebruikte classes */
+@source '../../templates';
+@source '../js';
+
+/* ------------------------------------------------------------------
+   Webfonts
+   Alleen fonts met een webfontlicentie voor dit domein. Zet de .woff2-bestanden in web/fonts
+   en zet hier per gewicht een regel neer. Preload het belangrijkste gewicht in _layouts/base.twig.
+------------------------------------------------------------------- */
+/* @font-face { font-family: 'Merkfont'; src: url('/fonts/merkfont-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; } */
+/* @font-face { font-family: 'Merkfont'; src: url('/fonts/merkfont-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; } */
+
+/* ------------------------------------------------------------------
+   Design tokens. Neem hier de Figma-variabelen over (kleuren, fonts, tekststijlen, radius).
+   Templates gebruiken alleen deze namen (bg-primair, text-h2, rounded-kaart, ...),
+   dus een nieuw project begint met het aanpassen van dit blok.
+------------------------------------------------------------------- */
+@theme {
+  --color-primair: #1f2b4d;
+  --color-primair-donker: #141c33;
+  --color-accent: #f2a33a;
+  --color-accent-donker: #d9861a;
+  --color-tekst: #1c1d21;
+  --color-tekst-zacht: #585a63;
+  --color-wit: #ffffff;
+  --color-vlak: #f4f1ea;
+  --color-rand: #dcd7cc;
+  --color-placeholder: #d6d1c4;
+
+  --font-kop: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Vloeiende tekststijlen: mobiel -> desktop (1440). Vervang door de Figma-waarden. */
+  --text-display: clamp(2.75rem, 1.9rem + 3.6vw, 5rem);
+  --text-display--line-height: 1.02;
+  --text-h1: clamp(2.25rem, 1.75rem + 2.1vw, 3.75rem);
+  --text-h1--line-height: 1.06;
+  --text-h2: clamp(1.75rem, 1.5rem + 1.1vw, 2.5rem);
+  --text-h2--line-height: 1.12;
+  --text-h3: clamp(1.25rem, 1.15rem + 0.45vw, 1.625rem);
+  --text-h3--line-height: 1.25;
+  --text-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+  --text-lead--line-height: 1.5;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.65;
+  --text-klein: 0.875rem;
+  --text-klein--line-height: 1.5;
+
+  --radius-kaart: 1rem;
+  --radius-knop: 999px;
+
+  --container-site: 80rem;  /* max-w-site */
+  --container-tekst: 46rem; /* max-w-tekst */
+}
+
+/* ------------------------------------------------------------------
+   Basis
+------------------------------------------------------------------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  body {
+    @apply bg-wit font-sans text-body text-tekst;
+  }
+  h1, h2, h3, h4 {
+    @apply font-kop font-bold text-balance;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+  .op-donker :focus-visible {
+    outline-color: var(--color-wit);
+  }
+  [hidden] { display: none !important; }
+}
+
+/* ------------------------------------------------------------------
+   Utilities
+------------------------------------------------------------------- */
+@utility container-site {
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @variant md { padding-inline: 1.5rem; }
+  @variant lg { padding-inline: 2rem; }
+}
+
+@utility container-tekst {
+  width: 100%;
+  max-width: calc(var(--container-tekst) + 2rem);
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @variant md {
+    max-width: calc(var(--container-tekst) + 3rem);
+    padding-inline: 1.5rem;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Componenten
+------------------------------------------------------------------- */
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-knop bg-accent px-6 py-3 font-semibold text-primair-donker transition-colors;
+    text-decoration: none;
+  }
+  .btn:hover { @apply bg-accent-donker; }
+  .btn svg { @apply size-4 shrink-0 transition-transform; }
+  .btn:hover svg { transform: translateX(3px); }
+  .btn--rand { @apply border-2 border-current bg-transparent text-current; }
+  .btn--rand:hover { @apply bg-transparent opacity-80; }
+
+  /* Lopende tekst uit CKEditor */
+  .rich-text > * + * { margin-top: 1em; }
+  .rich-text a { @apply underline decoration-1 underline-offset-2; }
+  .rich-text a:hover { @apply decoration-2; }
+  .rich-text ul { @apply list-disc pl-5; }
+  .rich-text ol { @apply list-decimal pl-5; }
+  .rich-text li + li { margin-top: 0.35em; }
+  .rich-text strong { @apply font-semibold; }
+
+  /* Ruimte tussen blokken komt van de wrapper, niet van het blok zelf. */
+  .blokken {
+    --blok-ruimte: clamp(3.5rem, 2.5rem + 4vw, 7rem);
+    padding-block: var(--blok-ruimte);
+  }
+  .blokken > .blok + .blok { margin-top: var(--blok-ruimte); }
+  /* Blokken met een gekleurd vlak raken elkaar en de rand van de pagina zonder dubbele ruimte. */
+  .blokken > .blok--vlak + .blok--vlak { margin-top: 0; }
+  .blokken > .blok--vlak:first-child { margin-top: calc(var(--blok-ruimte) * -1); }
+  .blokken > .blok--vlak:last-child { margin-bottom: calc(var(--blok-ruimte) * -1); }
+  .blokken--artikel { --blok-ruimte: clamp(2.5rem, 2rem + 2vw, 4rem); }
+
+  /* Accordeon met <details> */
+  .accordeon summary { list-style: none; }
+  .accordeon summary::-webkit-details-marker { display: none; }
+  .accordeon details[open] .accordeon__icoon { transform: rotate(180deg); }
+
+  /* Verschijnen bij scrollen (zie src/js/modules/reveal.js) */
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .js [data-reveal].is-zichtbaar { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+  }
+}

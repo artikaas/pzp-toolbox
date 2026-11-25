@@ -1,0 +1,10 @@
+{#- Citaat met naam en functie. -#}
+<figure class="container-tekst" data-reveal>
+  {% include '_components/icons/citaat' with { class: 'mb-6 h-8 w-auto text-accent' } only %}
+  <blockquote class="text-h3 font-semibold text-primair">
+    <p>{{ blok.tekstPlat|nl2br }}</p>
+  </blockquote>
+  {%- if blok.bron %}
+    <figcaption class="mt-6 text-tekst-zacht"><span class="font-semibold text-tekst">{{ blok.bron }}</span>{% if blok.functie %}, {{ blok.functie }}{% endif %}</figcaption>
+  {%- endif %}
+</figure>

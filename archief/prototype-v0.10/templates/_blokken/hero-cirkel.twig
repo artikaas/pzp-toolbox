@@ -1,0 +1,29 @@
+{% import '_components/macros.twig' as m %}
+{% set n = stappen|length %}
+<section class="hero" id="cirkel" aria-labelledby="hero-titel">
+  <h1 class="hero__titel hero__titel--boven" aria-hidden="true">{{ m.accent(globals.heroTitel) }}</h1>
+  <div class="cirkel cirkel--{{ n }}" style="--n: {{ n }}">
+   <div class="cirkel__ring motion-safe:animate-[ring-in_1.1s_var(--ease-veer)_backwards]">
+    {% include '_svg/cirkel-' ~ n ~ '.svg' %}
+    <div class="cirkel__midden">
+      <h1 class="hero__titel" id="hero-titel">{{ m.accent(globals.heroTitel) }}</h1>
+      <p class="hero__subtitel">{{ globals.heroSubtitel }}</p>
+    </div>
+   </div>
+    <ol class="kaarten">
+    {% for stap in stappen %}
+      {% set hoek = 180 + (loop.index0 + 0.5) * 360 / n %}
+      <li class="kaart motion-safe:animate-[kaart-in_.8s_var(--ease-veer)_backwards]" style="--a: {{ hoek }}deg; animation-delay: {{ 350 + loop.index0 * 110 }}ms">
+        <a class="kaart__link transition-[translate] duration-500 ease-veer hover:-translate-y-1.5 focus-visible:-translate-y-1.5" href="#stap-{{ stap.nummer }}">
+          {{ m.tag(stap.nummer) }}
+          <span class="ballon transition-colors duration-300 ease-zacht">
+            <span class="ballon__label">Stap {{ stap.nummer }}</span>
+            <span class="ballon__titel">{{ stap.kaarttitel }}</span>
+            <span class="ballon__rollen">{% for rol in stap.rollen %}<span class="chip">{{ m.rolicoon(globals.rollen[rol].kleur) }}</span>{% endfor %}<span class="sr-only">: {% for rol in stap.rollen %}{{ globals.rollen[rol].label }}{{ not loop.last ? ', ' }}{% endfor %}</span></span>
+          </span>
+        </a>
+      </li>
+    {% endfor %}
+    </ol>
+</div>
+</section>

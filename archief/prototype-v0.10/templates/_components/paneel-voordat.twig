@@ -1,0 +1,32 @@
+<dialog class="paneel paneel--breed translate-x-full open:translate-x-0 starting:open:translate-x-full transition-[translate,display,overlay] transition-discrete duration-600 ease-veer backdrop:bg-aubergine/0 open:backdrop:bg-aubergine/55 starting:open:backdrop:bg-aubergine/0 backdrop:transition-[background-color,display,overlay] backdrop:transition-discrete backdrop:duration-500 backdrop:ease-zacht" id="voordat-je-begint" aria-labelledby="voordat-titel">
+  <div class="paneel__kop">
+    <div class="paneel__titelregel">
+      <span class="ster ster--klein" aria-hidden="true"><span>!</span></span>
+      <div><p class="paneel__label">{{ globals.documentTitel }}</p><h2 class="paneel__titel" id="voordat-titel">{{ voordatJeBegint.titel }}</h2></div>
+    </div>
+    <button class="knop-vierkant paneel__sluit transition-[background-color,rotate] duration-300 ease-veer hover:rotate-90" type="button" data-close aria-label="Sluiten"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16" stroke="#6F0D3B" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+    <nav class="stappenbalk" aria-label="Onderdelen">
+      {% for s in voordatJeBegint.secties %}<a class="stappenbalk__knop transition-colors duration-300 ease-zacht" href="#voordat-{{ loop.index }}">{{ s.titel }}</a>{% endfor %}
+      <a class="stappenbalk__knop transition-colors duration-300 ease-zacht" href="#voordat-referenties">{{ referenties.titel }}</a>
+    </nav>
+  </div>
+  <div class="paneel__body paneel__body--enkel transition-[opacity,translate] duration-700 delay-150 ease-veer starting:opacity-0 starting:translate-y-4">
+    <p class="paneel__doel">{{ globals.documentOndertitel }}</p>
+    {% for s in voordatJeBegint.secties %}
+    <section class="paneel__sectie" id="voordat-{{ loop.index }}">
+      <h3 class="paneel__sectiekop">{{ s.titel }}</h3>
+      {% for b in s.blokken %}
+        {% if b.type == 'kop' %}<h4>{{ b.tekst }}</h4>
+        {% elseif b.type == 'tekst' %}<p>{{ b.html|raw }}</p>
+        {% elseif b.type == 'lijst' %}<ul class="lijst">{% for i in b.items %}<li>{{ i|raw }}</li>{% endfor %}</ul>
+        {% elseif b.type == 'tabel' %}<div class="tabelwrap"><table><thead><tr>{% for k in b.kop %}<th scope="col">{{ k|raw }}</th>{% endfor %}</tr></thead><tbody>{% for rij in b.rijen %}<tr>{% for cel in rij %}{% if loop.first %}<th scope="row">{{ cel|raw }}</th>{% else %}<td>{{ cel|raw }}</td>{% endif %}{% endfor %}</tr>{% endfor %}</tbody></table></div>
+        {% endif %}
+      {% endfor %}
+    </section>
+    {% endfor %}
+    <section class="paneel__sectie" id="voordat-referenties">
+      <h3 class="paneel__sectiekop">{{ referenties.titel }}</h3>
+      <ul class="lijst">{% for r in referenties.items %}<li>{{ r|raw }}</li>{% endfor %}</ul>
+    </section>
+  </div>
+</dialog>

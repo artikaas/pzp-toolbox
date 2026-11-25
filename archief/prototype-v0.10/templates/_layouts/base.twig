@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>{{ globals.toolnaam|join(' ') }} | {{ globals.heroSubtitel }}</title>
+<link rel="stylesheet" href="css/app.css">
+<link rel="icon" href="assets/ster.svg">
+</head>
+<body>
+<a class="skiplink" href="#inhoud">Naar de inhoud</a>
+{% include '_svg/gereedschapskist-symbol.svg' %}
+{% include '_partials/nav.twig' %}
+<main id="inhoud">
+{% block inhoud %}{% endblock %}
+</main>
+{% include '_partials/footer.twig' %}
+<button class="ster ster--zwevend group transition-[scale,rotate] duration-500 ease-veer hover:scale-110 hover:rotate-12 motion-safe:[animation:ster-in_.9s_var(--ease-veer)_1.2s_backwards,ster-bop_6s_var(--ease-veer)_3s_infinite]" type="button" data-open="voordat-je-begint" aria-haspopup="dialog">
+  <span aria-hidden="true">!</span>
+  <span class="ster__label pointer-events-none translate-x-2 opacity-0 transition-[opacity,translate] duration-300 ease-veer group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100">{{ globals.voordatLabel }}</span>
+</button>
+{% block overlays %}{% endblock %}
+<script src="js/app.js" defer></script>
+</body>
+</html>

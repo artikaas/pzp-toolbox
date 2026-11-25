@@ -1,0 +1,542 @@
+{
+  "assets": [
+    {
+      "key": "zzsd-logo",
+      "volume": "media",
+      "file": "zzsd-logo.svg",
+      "alt": "Zelf zorgen, samen doen"
+    }
+  ],
+  "entries": [
+    {
+      "sectie": "rollen",
+      "type": "rol",
+      "slug": "alle-zorgprofessionals",
+      "titel": "Alle zorgprofessionals",
+      "velden": {
+        "kleur": "aubergine"
+      }
+    },
+    {
+      "sectie": "rollen",
+      "type": "rol",
+      "slug": "regiebehandelaar",
+      "titel": "Regiebehandelaar",
+      "velden": {
+        "kleur": "roze"
+      }
+    },
+    {
+      "sectie": "toolbox",
+      "titel": "Toolbox",
+      "velden": {
+        "toolboxStappen": [
+          {
+            "type": "toolboxStap",
+            "titel": "Signaleren en markeren",
+            "velden": {
+              "rollen": [
+                "@entry:rollen/alle-zorgprofessionals",
+                "@entry:rollen/regiebehandelaar"
+              ],
+              "groepen": [
+                {
+                  "type": "groep",
+                  "titel": "Met wie PZP-gesprekken voeren?",
+                  "velden": {
+                    "tekst": "<ul><li>Patiënten met een levensbedreigende of ongeneeslijke aandoening.</li><li>Patiënten met een progressieve chronische aandoening of toenemende kwetsbaarheid (<em>frailty</em>).</li><li>Patiënten met een verwachte achteruitgang in cognitieve of communicatieve vaardigheden (bijv. beginnende dementie).</li><li>Patiënten met een verhoogd risico op blijvende invaliditeit of functieverlies na behandeling.</li></ul>",
+                    "kolom": "links"
+                  }
+                },
+                {
+                  "type": "groep",
+                  "titel": "Wanneer PZP-gesprekken voeren?",
+                  "velden": {
+                    "tekst": "<ul><li>Bij het markeren van de palliatieve fase.</li><li>Bij de diagnose van aandoeningen waarbij communicatie- of wilsbekwaamheidsproblemen te verwachten zijn.</li><li>Bij het kenbaar maken van een wilsverklaring of euthanasieverzoek.</li><li>Na aanleiding uit MDO-, PTO- of PaTz-overleg.</li><li>Bij vragen van de patiënt of naasten over zorg in de toekomst of het levenseinde.</li></ul>",
+                    "kolom": "rechts"
+                  }
+                }
+              ],
+              "tips": "<p>Voer PZP-gesprekken vóórdat zich een acute crisissituatie voordoet.</p><p>Is de patiënt nog niet toe aan een PZP-gesprek? Respecteer dit 'recht op niet-weten', noteer dit in het dossier en kom er op een gepast later moment laagdrempelig op terug.</p>",
+              "doel": "<p>Vroegtijdig opmerken van veranderingen in gezondheid of welzijn op alle vier de dimensies, het formeel markeren van de palliatieve fase en het tijdig opstarten van proactieve zorgplanning.</p>",
+              "achtergrond": [],
+              "rolverdeling": "<ul><li><em>Signaleren:</em> Kan en mag door <strong>alle zorgprofessionals</strong> en vrijwilligers gebeuren.</li><li><em>Markeren:</em> Het formeel vaststellen en vastleggen van de palliatieve fase is voorbehouden aan de <strong>regiebehandelaar</strong> (Arts, SO, Medisch Specialist, VS, PA).</li><li><em>Regionale afspraak:</em> Breng bij het signaleren van kwetsbaarheid direct de regiebehandelaar op de hoogte. Stem af wie de fase formeel markeert en wie het eerste PZP-gesprek opstart.</li></ul>",
+              "werkwijzen": [],
+              "hulpmiddelgroepen": [
+                {
+                  "type": "hulpmiddelgroep",
+                  "velden": {
+                    "kop": "",
+                    "hulpmiddelen": [
+                      {
+                        "type": "hulpmiddel",
+                        "titel": "Surprise Question (SQ)",
+                        "velden": {
+                          "omschrijving": "\"Zou het mij verbazen als deze patiënt in het komende jaar komt te overlijden?\" (Reflectie-instrument voor professionals)."
+                        }
+                      },
+                      {
+                        "type": "hulpmiddel",
+                        "titel": "SPICT (Supportive and Palliative Care Indicators Tool)",
+                        "velden": {
+                          "omschrijving": "Voor het identificeren van algemene en ziektespecifieke kwaliteitsachteruitgang."
+                        }
+                      },
+                      {
+                        "type": "hulpmiddel",
+                        "titel": "PZP in het MDO/PaTz",
+                        "velden": {
+                          "omschrijving": "Leidraad voor gestructureerde bespreking in het netwerk."
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "toolboxStap",
+            "titel": "Exploreren van waarden en behoeften",
+            "velden": {
+              "rollen": [
+                "@entry:rollen/alle-zorgprofessionals"
+              ],
+              "groepen": [
+                {
+                  "type": "groep",
+                  "titel": "Wat exploreren?",
+                  "velden": {
+                    "tekst": "<ul><li><em>Levenswensen &amp; Waarden:</em> Wat geeft het leven betekenis? Wat zijn persoonlijke grenzen, angsten en prioriteiten op fysiek, psychisch, sociaal en zingevingsgebied?</li><li>Levenswensen vormen het ethische en persoonlijke fundament voor het later afstemmen van medische behandelgrenzen.</li></ul>",
+                    "kolom": "links"
+                  }
+                },
+                {
+                  "type": "groep",
+                  "titel": "Voorbereiding van de patiënt",
+                  "velden": {
+                    "tekst": "<p>Adviseer de patiënt om vooraf na te denken over wat belangrijk is, hulpmiddelen te bekijken, een naaste uit te nodigen voor het gesprek en eventuele bestaande wilsverklaringen of levenstestamenten mee te nemen.</p>",
+                    "kolom": "links"
+                  }
+                },
+                {
+                  "type": "groep",
+                  "titel": "Voorbereiding van de zorgprofessional",
+                  "velden": {
+                    "tekst": "<ul><li>Controleer vooraf in het dossier/Zorgviewer of er al eerdere PZP-gegevens of wilsverklaringen bekend zijn (alleen bij een actieve behandelrelatie en met toestemming).</li><li>Reserveer voldoende tijd, zorg voor een rustige omgeving en verdiep je in het verwachte ziektescenario.</li></ul>",
+                    "kolom": "rechts"
+                  }
+                }
+              ],
+              "tips": "<p>Doseer de gesprekken: PZP hoeft niet in één zwaar gesprek te worden afgerond.</p><p>Sluit aan bij de bewoordingen, het taalniveau en de culturele achtergrond van de patiënt.</p>",
+              "doel": "<p>Verhelderen wat voor de patiënt én naasten écht van belang is (levenswensen, persoonlijke waarden, behoeften, angsten, cultuur en zingeving) als voorbereiding op medische besluitvorming.</p>",
+              "achtergrond": [],
+              "rolverdeling": "<ul><li>Het verkennen van levenswensen en persoonlijke waarden kan door <strong>alle zorgprofessionals</strong> (bijv. wijkverpleegkundige, POH, casemanager) worden uitgevoerd.</li></ul>",
+              "werkwijzen": [],
+              "hulpmiddelgroepen": [
+                {
+                  "type": "hulpmiddelgroep",
+                  "velden": {
+                    "kop": "Voor de patiënt & naasten",
+                    "hulpmiddelen": [
+                      {
+                        "type": "hulpmiddel",
+                        "titel": "Wensenboekje / Gesprekshulp levenseinde.",
+                        "velden": {}
+                      },
+                      {
+                        "type": "hulpmiddel",
+                        "titel": "Uitleg over palliatieve zorg: Steffie-visualisaties (begrijpelijke taal) / Informatie van de Netwerken Palliatieve Zorg Twente.",
+                        "velden": {}
+                      },
+                      {
+                        "type": "hulpmiddel",
+                        "titel": "Keuzehulp op Thuisarts.nl: \"Verken uw wensen voor zorg en behandeling\".",
+                        "velden": {}
+                      },
+                      {
+                        "type": "hulpmiddel",
+                        "titel": "e-Book Patiëntenfederatie: \"Praat op tijd over je levenseinde\".",
+                        "velden": {}
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "hulpmiddelgroep",
+                  "velden": {
+                    "kop": "Voor de zorgprofessional",
+                    "hulpmiddelen": [
+                      {
+                        "type": "hulpmiddel",
+                        "titel": "IKNL-Gesprekskaart Proactieve Zorgplanning.",
+                        "velden": {}
+                      },
+                      {
+                        "type": "hulpmiddel",
+                        "titel": "Handleiding \"Hoe start je een PZP-gesprek?\" (Regio Twente).",
+                        "velden": {}
+                      },
+                      {
+                        "type": "hulpmiddel",
+                        "titel": "Handreiking voorbeeldvragen levenswensen & 4 dimensies.",
+                        "velden": {}
+                      },
+                      {
+                        "type": "hulpmiddel",
+                        "titel": "Cultuursensitieve zorggids (Pharos) voor PZP bij diverse culturele/levensbeschouwelijke achtergronden.",
+                        "velden": {}
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "toolboxStap",
+            "titel": "Gezamenlijke besluitvorming (Samen beslissen)",
+            "velden": {
+              "rollen": [
+                "@entry:rollen/regiebehandelaar"
+              ],
+              "groepen": [
+                {
+                  "type": "groep",
+                  "titel": "Wat afspreken?",
+                  "velden": {
+                    "tekst": "<ul><li><em>Behandeldoelen:</em> Kwaliteit van leven/comfort, behoud van functioneren, of (waar gepast) levensverlenging.</li><li><em>Concrete behandelgrenzen:</em> Wel of niet reanimeren, wel of geen ziekenhuisopname, IC-opname, invasieve beademing, antibiotica, nierdialyse, of beademingszorg.</li><li><em>Anticiperen op scenario's:</em> Afspraken bij acute verslechtering, gewenste plaats van zorg en sterven, wilsverklaringen en het aanwijzen van een wettelijk vertegenwoordiger.</li></ul>",
+                    "kolom": "links"
+                  }
+                },
+                {
+                  "type": "groep",
+                  "titel": "Hoe?",
+                  "velden": {
+                    "tekst": "<ul><li>Het voeren van het daadwerkelijke besluiten- en behandelgesprek met de patiënt en/of naasten op basis van de verkende waarden en medische behandelopties (<em>Samen Beslissen</em>).</li></ul>",
+                    "kolom": "rechts"
+                  }
+                }
+              ],
+              "tips": "<p>De essentie van samen beslissen is zorg voor de toekomst passend maken: durf ook af te zien van medisch niet-passende handelingen.</p><p>Toets tijdens het gesprek of eerder vastgelegde keuzes nog steeds aansluiten bij de actuele wensen.</p>",
+              "doel": "<p>Het samenbrengen van de verkende levenswensen en waarden van de patiënt met de medische expertise en prognose van de zorgprofessional, om te komen tot passende, gedragen keuzes, behandelwensen en concrete behandelgrenzen.</p>",
+              "achtergrond": [],
+              "rolverdeling": "<ul><li>Het bespreken en formeel vaststellen van medische behandelwensen en behandelgrenzen valt onder de medische eindverantwoordelijkheid van de <strong>regiebehandelaar</strong> (Huisarts, SO, Medisch Specialist, VS, PA).</li></ul>",
+              "werkwijzen": [],
+              "hulpmiddelgroepen": [],
+              "kaarttitel": "Samen beslissen"
+            }
+          },
+          {
+            "type": "toolboxStap",
+            "titel": "Gegevens vastleggen en delen",
+            "velden": {
+              "rollen": [
+                "@entry:rollen/alle-zorgprofessionals",
+                "@entry:rollen/regiebehandelaar"
+              ],
+              "groepen": [
+                {
+                  "type": "groep",
+                  "titel": "Wat leggen we vast?",
+                  "velden": {
+                    "tekst": "<ul><li>Duidelijk onderscheid tussen <strong>Levenswensen</strong> (persoonlijke waarden, doelen, afspraken met netwerk) en <strong>Behandelwensen/-grenzen</strong> (medische besluitvorming, reanimatiebeleid, opnamebeleid).</li></ul>",
+                    "kolom": "links"
+                  }
+                },
+                {
+                  "type": "groep",
+                  "titel": "Hoe delen we in Twente?",
+                  "velden": {
+                    "tekst": "<ul><li>Ketenbrede uitwisseling vindt plaats via de regionale infrastructuur (<em>Versneld Verbinden / Zorgviewer</em>).</li><li>Geef de patiënt (indien nog niet digitaal inzichtelijk via een patiëntenportaal) altijd een actuele print van de gemaakte afspraken mee voor thuis.</li></ul>",
+                    "kolom": "links"
+                  }
+                },
+                {
+                  "type": "groep",
+                  "titel": "Hoe leggen we vast?",
+                  "velden": {
+                    "tekst": "<p>Conform de landelijke <em>Informatiestandaard PZP</em> en het formulier <em>Uniform Vastleggen PZP</em>:</p><ul><li><strong>Huisartsen / HAP:</strong> In het HIS (Medicom, Bricks, Sanday, Topicus) op de daarvoor bestemde PZP-velden.</li><li><strong>Ziekenhuis (MST/ZGT):</strong> In het EPD (HiX) onder het landelijke PZP-bouwblok.</li><li><strong>VVT intramuraal &amp; extramuraal:</strong> In het ECD (ONS / PUUR).</li></ul>",
+                    "kolom": "rechts"
+                  }
+                }
+              ],
+              "tips": "<p>Controleer altijd of de patiënt expliciete toestemming heeft gegeven voor digitale ketenuitwisseling.</p><p>Vermeld bij verslaglegging altijd: datum van het gesprek, aanwezigen, gemaakte afspraken, wie de wettelijk vertegenwoordiger is en de contactgegevens van de regiebehandelaar.</p>",
+              "doel": "<p>Het gestructureerd, eenduidig en herkenbaar vastleggen van de gemaakte PZP-afspraken in het EPD/ECD en het (met expliciete toestemming van de patiënt) 24/7 ketenbreed beschikbaar maken voor alle betrokken zorgverleners en spoeddiensten.</p>",
+              "achtergrond": [],
+              "rolverdeling": "<ul><li><em>Levenswensen vastleggen:</em> Mogen door <strong>alle zorgprofessionals</strong> worden ingevoerd in het dossier.</li><li><em>Behandelwensen/-grenzen vastleggen:</em> Mogen uitsluitend door of namens de <strong>regiebehandelaar</strong> worden vastgelegd.</li><li><em>Ketenoverdracht:</em> Alle betrokken zorgprofessionals zien erop toe dat bij overdracht de actuele PZP-informatie (inclusief contactgegevens van de regiebehandelaar en centrale zorgverlener) meegaat.</li></ul>",
+              "werkwijzen": [],
+              "hulpmiddelgroepen": [
+                {
+                  "type": "hulpmiddelgroep",
+                  "velden": {
+                    "kop": "",
+                    "hulpmiddelen": [
+                      {
+                        "type": "hulpmiddel",
+                        "titel": "Informatiestandaard PZP",
+                        "velden": {}
+                      },
+                      {
+                        "type": "hulpmiddel",
+                        "titel": "Formulier Uniform Vastleggen PZP",
+                        "velden": {}
+                      },
+                      {
+                        "type": "hulpmiddel",
+                        "titel": "Zorgviewer / Versneld Verbinden",
+                        "velden": {}
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "toolboxStap",
+            "titel": "Evaluatie en borging",
+            "velden": {
+              "rollen": [
+                "@entry:rollen/alle-zorgprofessionals",
+                "@entry:rollen/regiebehandelaar"
+              ],
+              "groepen": [
+                {
+                  "type": "groep",
+                  "titel": "Wanneer evalueren?",
+                  "velden": {
+                    "tekst": "<ul><li>Bij een merkbare verandering in de gezondheidssituatie, kwetsbaarheid of functionaliteit.</li><li>Na een ziekenhuisopname, spoedsituatie of verhuizing/overplaatsing (bijv. opname in verpleeghuis of hospice).</li><li>Na bespreking in een MDO, PTO of PaTz-overleg.</li><li>Op expliciet verzoek van de patiënt of diens naasten.</li></ul>",
+                    "kolom": "links"
+                  }
+                },
+                {
+                  "type": "groep",
+                  "titel": "Opvolging",
+                  "velden": {
+                    "tekst": "<ul><li>Signaleer je als zorgprofessional een verandering? Communiceer dit direct aan de centrale zorgverlener of regiebehandelaar.</li><li>Bij gewenste of noodzakelijke actualisatie worden de Stappen 2, 3 en 4 opnieuw doorlopen en direct verwerkt in de ketendossiers.</li></ul>",
+                    "kolom": "rechts"
+                  }
+                }
+              ],
+              "tips": "<p>Wacht niet op een acute crisis: evalueer proactief bij elke kanteling in het ziekteproces.</p><p>Wensen en grenzen kunnen in de loop der tijd verschuiven. Wat een half jaar geleden wenselijk was, kan nu anders ervaren worden.</p><p>Pas wijzigingen direct aan in EPD/ECD, zodat de HAP en ambulancedienst altijd met de meest actuele gegevens werken.</p>",
+              "doel": "<p>Periodiek (of na ingrijpende gebeurtenissen) toetsen of de vastgelegde PZP-afspraken nog aansluiten bij de actuele situatie en wensen van de patiënt, én borgen dat het gehele zorgnetwerk hier 24/7 naar handelt.</p>",
+              "achtergrond": [
+                {
+                  "type": "groep",
+                  "titel": "Hoe evalueren? (Klinische Methodiek & Tool)",
+                  "velden": {
+                    "tekst": "<ul><li><strong>Klinische motor: Palliatief Redeneren:</strong> Zorgprofessionals gebruiken de 4 stappen van <em>Palliatief Redeneren</em> (1. Inventariseer situatie bij verandering 2. Vat problematiek samen &amp; maak proactief beleid 3. Maak evaluatie-afspraken 4. Stel bij en evalueer) om veranderingen in klachten of toestand methodisch te onderbouwen.</li><li><strong>Verander-Checklist:</strong> Gebruik de onderstaande praktische checklist om verandersignalen tijdig te herkennen.</li></ul>"
+                  }
+                }
+              ],
+              "rolverdeling": "<ul><li><em>Signaleren van veranderingen:</em> <strong>Alle betrokken zorgprofessionals</strong>, mantelzorgers en vrijwilligers.</li><li><em>Herziening &amp; Borging:</em> De <strong>regiebehandelaar</strong> borgt dat de herbeoordeling plaatsvindt en dat de gewijzigde behandelgrenzen correct in de keten worden bijgesteld.</li></ul>",
+              "werkwijzen": [],
+              "hulpmiddelgroepen": [],
+              "checklist": [
+                {
+                  "type": "checklist",
+                  "titel": "Checklist ‘Herkennen van veranderingen in de gezondheidssituatie’",
+                  "velden": {
+                    "instructie": "<p><strong><em>Instructie:</em></strong><em> Kijk naar veranderingen ten opzichte van de vorige situatie van de patiënt*, niet alleen naar de absolute ernst van een klacht.</em></p>",
+                    "signalen": [
+                      {
+                        "signaal": "Eet of drinkt merkbaar minder dan voorheen"
+                      },
+                      {
+                        "signaal": "Is onbedoeld afgevallen of snel aangekomen"
+                      },
+                      {
+                        "signaal": "Ervaart meer moeite met lopen, opstaan of mobiliteit"
+                      },
+                      {
+                        "signaal": "Heeft meer dagelijkse hulp of verzorging nodig"
+                      },
+                      {
+                        "signaal": "Reageert trager of heeft meer moeite met gesprekken volgen"
+                      },
+                      {
+                        "signaal": "Is vaker vergeetachtig, verward of afwezig"
+                      },
+                      {
+                        "signaal": "Familie of naasten maken zich duidelijk meer zorgen"
+                      },
+                      {
+                        "signaal": "Mantelzorgers/naasten ervaren een toenemende overbelasting"
+                      },
+                      {
+                        "signaal": "Ervaart meer lichamelijke, psychische of existentiële klachten"
+                      },
+                      {
+                        "signaal": "Heeft minder belangstelling voor omgeving, hobby's of naasten"
+                      }
+                    ],
+                    "conclusie": "Conclusie: De eerder vastgelegde PZP-afspraken passen mogelijk niet meer bij de huidige situatie",
+                    "uitkomstKop": "Uitkomst & vervolgactie",
+                    "uitkomstNee": "<p><strong>Alle vragen 'Nee':</strong> Huidige zorg en afspraken continueren en periodiek blijven monitoren.</p>",
+                    "uitkomstAnders": "<p><strong>Eén of meer vragen 'Twijfel' of 'Ja':</strong></p><ul><li>Bespreek de verandering met de patiënt en naasten (<em>\"Sluit de zorg en wat we afgesproken hebben nog aan bij hoe het nu met u gaat?\"</em>).</li><li>Gebruik de methodiek van <em>palliatief redeneren</em> om de verandering klinisch in kaart te brengen.</li><li>Meld de bevindingen bij de centrale zorgverlener of regiebehandelaar om de Stappen 2, 3 en 4 van de leidraad opnieuw te doorlopen en de gegevens in de keten te actualiseren.</li></ul>"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "sectie": "voordat",
+      "titel": "Voordat je begint",
+      "velden": {
+        "intro": "Conform de Regionale leidraad proactieve zorgplanning Twente (2026) en het Kwaliteitskader palliatieve zorg Nederland (editie 2, september 2026)",
+        "onderdelen": [
+          {
+            "type": "onderdeel",
+            "titel": "Waarom en wat is PZP",
+            "velden": {
+              "inhoud": [
+                {
+                  "type": "tussenkop",
+                  "titel": "Wat is proactieve zorgplanning (PZP)?"
+                },
+                {
+                  "type": "tekstInhoud",
+                  "velden": {
+                    "tekst": "<p>Proactieve zorgplanning (PZP) is een continu en dynamisch proces van gesprekken over huidige en toekomstige levensdoelen, keuzes en behandelgrenzen, waarin de patiënt*, naasten en zorgprofessionals tijdig en herhaaldelijk afstemmen welke zorg nu én in de toekomst past. Met <em>samen beslissen</em> als leidraad omvat PZP vier evenwaardige dimensies:</p><ul><li><strong>Fysieke dimensie:</strong> Lichamelijke klachten, symptoommanagement en medische behandelkeuzes.</li><li><strong>Psychische dimensie:</strong> Mentaal welzijn, emoties, verwerkingsproces, coping en angst.</li><li><strong>Sociale dimensie:</strong> Relaties, mantelzorg, gezin, leefsituatie en informele ondersteuning.</li><li><strong>Zingevings- &amp; spirituele dimensie:</strong> Levensvisie, persoonlijke waarden, zingeving, cultuur en existentiële vragen.</li></ul><p>Het belangrijkste doel van PZP is het versterken van de eigen regie van de patiënt*, het vergroten van de kwaliteit van leven en sterven, en het voorkomen van ongewenste, niet-passende zorg of acute crisissituaties.</p><p><em>* Overal waar 'patiënt' genoemd staat, kan ook cliënt, bewoner, gast of inwoner gelezen worden. Bij wilsonbekwaamheid wordt de wettelijk vertegenwoordiger bedoeld.</em></p>"
+                  }
+                },
+                {
+                  "type": "tussenkop",
+                  "titel": "Waarom PZP in Twente? (Regionale hoofddoelen)"
+                },
+                {
+                  "type": "tekstInhoud",
+                  "velden": {
+                    "tekst": "<p>In de regio Twente werken we binnen het programma <em>Versneld Verbinden 2026</em> transmuraal en ketenbreed samen om de volgende doelen te garanderen:</p><ul><li><strong>Versterken van de eigen regie:</strong> Het centraal stellen van de waarden, wensen en behoeften van de patiënt* en het versterken van de relatie met naasten en zorgverleners.</li><li><strong>Verbeteren van kwaliteit van leven en sterven:</strong> Passende zorg bieden in elke fase van het ziektetraject.</li><li><strong>Voorkomen van ongewenste zorg:</strong> Voorkomen dat patiënten in acute situaties behandelingen ondergaan die zij niet wensen, en voorkomen dat zij herhaaldelijk dezelfde ingrijpende vragen moeten beantwoorden.</li><li><strong>Verbinden van formele zorg en informele ondersteuning:</strong> De typisch Twentse kracht van <em>noaberschap</em> (mantelzorgers, vrijwilligers en noabers) optimaal benutten, terwijl drempels worden verlaagd voor patiënten om tijdig professionele hulp te vragen.</li><li><strong>Borgen van 24/7 ketentransparantie en continuïteit:</strong> Zorgen dat PZP-gegevens dag en nacht inzichtelijk zijn voor alle betrokken ketenpartners (inclusief HAP en ambulance), wat essentieel is voor de krappe arbeidsmarkt en efficiënte regionale afstemming.</li></ul>"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "onderdeel",
+            "titel": "1. Algemene informatie & regionale samenwerking",
+            "velden": {
+              "inhoud": [
+                {
+                  "type": "tussenkop",
+                  "titel": "Doel van deze sectie"
+                },
+                {
+                  "type": "tekstInhoud",
+                  "velden": {
+                    "tekst": "<p>Bewustwording vergroten bij de zorgprofessional vóór de stappen beginnen, het proces inbedden in de Twentse cultuur (<em>noaberschap</em>), en transparantie bieden over regionale en ketenbrede afspraken.</p>"
+                  }
+                },
+                {
+                  "type": "tussenkop",
+                  "titel": "Hoe werkt deze PZP-toolbox?"
+                },
+                {
+                  "type": "tekstInhoud",
+                  "velden": {
+                    "tekst": "<p>Proactieve zorgplanning is een essentieel onderdeel van zorg, maar vraagt om de juiste handvatten. Deze toolbox ondersteunt zorgprofessionals uit alle Twentse sectoren (huisartsenpraktijken, ziekenhuizen [MST/ZGT], VVT-instellingen, hospices en apotheken) om PZP-gesprekken tijdig, gestructureerd en goed voorbereid te voeren, afspraken uniform vast te leggen en ketenbreed te delen.</p>"
+                  }
+                },
+                {
+                  "type": "tussenkop",
+                  "titel": "Samenwerking & Afspraken in Twente (Versneld Verbinden 2026)"
+                },
+                {
+                  "type": "tekstInhoud",
+                  "velden": {
+                    "tekst": "<ul><li><strong>Regionale Leidraad PZP Twente:</strong> Directe toegang tot de geldende ketenafspraken en sectorspecifieke werkwijzen.</li><li><strong>Scholingsaanbod &amp; media:</strong> E-learnings en de regionale animatie <em>PZP Versneld Verbinden</em>. Zorgorganisaties dragen de verantwoordelijkheid om te zorgen voor voldoende kennis en scholing over PZP bij hun professionals.</li><li><strong>Toestemming &amp; gegevensuitwisseling:</strong> Borgen van de expliciete toestemming van de patiënt* voor 24/7 ketenbrede gegevensinzage via de regionale infrastructuur (Zorgviewer / Versneld Verbinden).</li></ul>"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "onderdeel",
+            "titel": "2. Begrippen, rollen & verantwoordelijkheden",
+            "velden": {
+              "inhoud": [
+                {
+                  "type": "tussenkop",
+                  "titel": "Begripsafbakening"
+                },
+                {
+                  "type": "tekstInhoud",
+                  "velden": {
+                    "tekst": "<ul><li><strong>Patiënt:*</strong> Waar 'patiënt' staat, kan ook cliënt, bewoner, gast of inwoner gelezen worden. Bij wilsonbekwaamheid wordt de wettelijk vertegenwoordiger bedoeld.</li><li><strong>Regiebehandelaar:</strong> De zorgverlener (huisarts, specialist ouderengeneeskunde [SO] of medisch specialist) die de algehele coördinatie en continuïteit van het medisch zorgproces bewaakt, zorgt voor eenduidige afstemming tussen behandelaren en optreedt als hoofdverantwoordelijke voor het medisch beleid.</li><li><strong>Medisch behandelaar:</strong> Vervult een inhoudelijke rol in het bepalen van het medisch beleid op diens specifieke vakgebied. Er kunnen meerdere medisch behandelaren bij één patiënt betrokken zijn.</li><li><strong>Centrale zorgverlener:</strong> De vastgestelde professional buiten de 2e lijn (bijv. de wijkverpleegkundige, casemanager, POH of regieverpleegkundige) die voor de patiënt en naasten het dagelijks aanspreekpunt is, de eigen regie stimuleert en de praktische continuïteit van de netwerkzorg bewaakt.</li><li><strong>Apotheker:</strong> Actieve partner in de signalerende keten wat betreft medicatiegebruik, medicatiesanering en afstemming met de regiebehandelaar.</li></ul>"
+                  }
+                },
+                {
+                  "type": "tussenkop",
+                  "titel": "Wat is je rol?"
+                },
+                {
+                  "type": "tekstInhoud",
+                  "velden": {
+                    "tekst": "<p>Er is géén starre 'gouden standaard' wie welk gesprek voert; PZP is een <strong>gezamenlijke ketenverantwoordelijkheid</strong>. Zorgprofessionals stemmen onderling af (bijv. in een MDO, PaTz-overleg of via transmuraal contact) wie het initiatief neemt en wie welk deel van het gesprek voert. Bij voorkeur is dit de professional die de beste vertrouwensband heeft met de patiënt.</p>"
+                  }
+                },
+                {
+                  "type": "tussenkop",
+                  "titel": "Matrix rollen & verantwoordelijkheden"
+                },
+                {
+                  "type": "tekstInhoud",
+                  "velden": {
+                    "tekst": "<figure class=\"table\"><table><thead><tr><th><strong>Rol / Zorgprofessional</strong></th><th><strong>Verantwoordelijkheden &amp; bevoegdheden in de Twentse keten</strong></th></tr></thead><tbody><tr><td><strong>Alle zorgprofessionals</strong>\n<em>(Verpleegkundigen, verzorgenden, welzijn)</em></td><td><strong>Signaleren, verkennen en ondersteunen:</strong> Tijdig herkennen van kwetsbaarheid of achteruitgang, verkennen van levenswensen en persoonlijke waarden op de 4 dimensies, en het informeren van de regiebehandelaar/centrale zorgverlener.</td></tr><tr><td><strong>Regiebehandelaar</strong>\n<em>(Huisarts, SO, Medisch Specialist)</em></td><td><strong>Medisch eindverantwoordelijk:</strong> Formeel markeren van de palliatieve fase, voeren van het besluiten- en behandelgesprek, vastleggen van behandelwensen en behandelgrenzen (o.a. reanimatie, ziekenhuisopname). Werkt zo nodig via een verlengde-armconstructie, maar blijft eindverantwoordelijk.</td></tr><tr><td><strong>Verpleegkundig Specialist (VS) / Physician Assistant (PA)</strong></td><td><strong>Zelfstandig bevoegd:</strong> Binnen de geldende organisatie-afspraken zelfstandig bevoegd tot het markeren van de palliatieve fase, voeren van PZP-gesprekken en vastleggen van behandelgrenzen (conform landelijke en regionale afspraken).</td></tr><tr><td><strong>Centrale zorgverlener</strong>\n<em>(Wijkverpleegkundige, casemanager, POH)</em></td><td><strong>Praktische coördinatie:</strong> Eerste aanspreekpunt voor patiënt en naasten; bewaakt de dagelijkse continuïteit van netwerkzorg, stimuleert zelfmanagement en ondersteunt bij de voorbereiding van PZP-gesprekken.</td></tr><tr><td><strong>Apotheker</strong></td><td><strong>Signaleren &amp; Adviseren:</strong> Signaleert veranderingen in medicatiegebruik, adviseert over medicatiesanering bij verschuivende behandeldoelen en informeert de regiebehandelaar.</td></tr><tr><td><strong>Regionale netwerken &amp; PaTz</strong></td><td><strong>Transmurale afstemming:</strong> Structurele afstemming tussen Twentse ziekenhuizen, huisartsen, VVT-organisaties, hospices, apothekers en PaTz-groepen (Palliatieve Zorg Thuis).</td></tr></tbody></table></figure>"
+                  }
+                },
+                {
+                  "type": "tussenkop",
+                  "titel": "Medische eindverantwoordelijkheid per zorgsetting"
+                },
+                {
+                  "type": "tekstInhoud",
+                  "velden": {
+                    "tekst": "<ul><li><strong>Huisartsenpraktijk / Thuis:</strong> Huisarts</li><li><strong>Verpleeghuis / VVT intramuraal:</strong> Specialist Ouderengeneeskunde (SO)</li><li><strong>Ziekenhuis (MST / ZGT):</strong> Medisch Specialist</li><li><strong>Hospice:</strong> Huisarts of SO (afhankelijk van lokale/regionale afspraken)</li></ul>"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "kop": "Referenties & onderbouwende kaders",
+        "tekst": "<ul><li><strong>Regionale leidraad proactieve zorgplanning Twente</strong>, programma <em>Versneld Verbinden</em> (2026).</li><li><strong>Kwaliteitskader palliatieve zorg Nederland – editie 2</strong>, Palliactief/ Stichting PZNL (september 2026).</li><li><strong>Factsheet verantwoordelijkheidsverdeling bij samenwerking in de zorg: introductie regiebehandelaar</strong>, De Federatie Medische Specialisten (maart 2023).</li><li><strong>Handreiking verantwoordelijkheidsverdeling bij samenwerking in de zorg</strong>, KNMG (2022).</li><li><strong>Leidraad proactieve zorgplanning in Nederlandse ziekenhuizen</strong>, Nederlandse Internisten Vereniging (NIV, oktober 2024).</li><li><strong>Richtlijn proactieve zorgplanning</strong>, Richtlijnen Palliatieve Zorg (maart 2023).</li><li><strong>Informatiestandaard proactieve zorgplanning &amp; Formulier uniform vastleggen PZP</strong>, Nictiz / PZNL.</li><li><strong>Palliaweb.nl &amp; thuisarts.nl</strong> (Patiënteninformatie en keuzehulpen PZP).</li></ul>"
+      }
+    }
+  ],
+  "globals": {
+    "algemeen": {
+      "siteTitel": "PZP-toolbox regio Twente"
+    },
+    "toolboxAlgemeen": {
+      "naamDeel1": "PZP",
+      "naamDeel2": "toolbox",
+      "kop": "Tijdig spreken over de *laatste levensfase*",
+      "heroSubtitel": "Proactieve zorgplanning",
+      "documentTitel": "PZP-toolbox regio Twente"
+    },
+    "labels": {
+      "leesMeer": "Lees meer",
+      "toolboxLabel": "Toolbox",
+      "menuLabel": "Menu",
+      "voordatLabel": "Voordat je begint",
+      "tabInformatie": "Informatie",
+      "tabHulpmiddelen": "Hulpmiddelen en documenten",
+      "tabWerkwijze": "Werkwijze per sector",
+      "tipsKop": "TIPS",
+      "leegTekst": "Nog niet toegevoegd.",
+      "antwoordNee": "Nee",
+      "antwoordTwijfel": "Twijfel",
+      "antwoordJa": "Ja"
+    },
+    "footer": {
+      "logo": "@asset:zzsd-logo",
+      "onderschrift": "De PZP-Tool is geïnspireerd door Netwerk palliatieve Zorg Zuidoost Brabant • 2026"
+    }
+  }
+}

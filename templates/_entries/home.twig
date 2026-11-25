@@ -1,0 +1,11 @@
+{#- Home (sectie Home): grote header en de blokken. -#}
+{%- extends '_layouts/base' -%}
+{%- block content -%}
+  {% include '_components/hero' with { entry: entry, groot: true } only %}
+  {%- set blokken = entry.blokken.all() %}
+  {%- if blokken is not empty %}
+    <div class="blokken blokken--home">
+      {% include '_blokken/_render' with { blokken: blokken, entry: entry, context: 'home' } only %}
+    </div>
+  {%- endif %}
+{%- endblock -%}

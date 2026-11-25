@@ -1,0 +1,4 @@
+{% macro accent(tekst) %}{% for deel in tekst|split('*') %}{% if loop.index0 is odd %}<span class="accent">{{ deel }}</span>{% else %}{{ deel }}{% endif %}{% endfor %}{% endmacro %}
+{% macro tag(nummer, klein) %}<span class="tag{{ klein ? ' tag--klein' : '' }} transition-colors duration-300 ease-zacht" aria-hidden="true">{{ nummer < 10 ? '0' ~ nummer : nummer }}</span>{% endmacro %}
+{% macro rolicoon(kleur) %}<img class="rolicoon" src="assets/icoon-persoon-{{ kleur }}.svg" width="24" height="24" alt="">{% endmacro %}
+{% macro pijl() %}<img class="transition-transform duration-300 ease-veer group-hover:translate-x-1" src="assets/icoon-pijl-rechts.svg" width="21" height="12" alt="">{% endmacro %}

@@ -1,0 +1,12 @@
+{% extends '_layouts/base.twig' %}
+{% block inhoud %}
+{% include '_blokken/hero-cirkel.twig' %}
+<section class="stappen" aria-label="De stappen">
+{% for stap in stappen %}{% include '_blokken/stap.twig' %}{% endfor %}
+</section>
+{% endblock %}
+{% block overlays %}
+{% for stap in stappen %}{% include '_components/paneel-stap.twig' %}{% endfor %}
+{% include '_components/paneel-voordat.twig' %}
+{% include '_components/paneel-menu.twig' %}
+{% endblock %}

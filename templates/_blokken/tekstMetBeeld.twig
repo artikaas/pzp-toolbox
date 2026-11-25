@@ -1,0 +1,16 @@
+{#- Tekst met beeld: twee kolommen, beeld links of rechts, optioneel op een gekleurd vlak. -#}
+{%- import '_components/macros' as m -%}
+{%- set achtergrond = blok.achtergrond.value ?? 'wit' -%}
+{%- set links = (blok.beeldPositie.value ?? 'rechts') == 'links' -%}
+<section class="{{ { primair: 'op-donker bg-primair text-wit', vlak: 'bg-vlak' }[achtergrond] ?? '' }} {{ achtergrond != 'wit' ? 'py-16 md:py-24' }}" aria-labelledby="blok-{{ blok.id }}">
+  <div class="container-site grid items-center gap-10 md:grid-cols-2 lg:gap-20">
+    <div class="relative aspect-[4/3] overflow-hidden rounded-kaart bg-vlak {{ links ? 'md:order-first' : 'md:order-last' }}" data-reveal>
+      {% include '_components/image' with { image: blok.afbeelding.one(), sizes: '(min-width: 768px) 50vw, 100vw', widths: [480, 768, 1024, 1440] } only %}
+    </div>
+    <div data-reveal>
+      <h2 id="blok-{{ blok.id }}" class="text-h2 {{ achtergrond == 'primair' ? '' : 'text-primair' }}">{{ m.accent(blok.kop) }}</h2>
+      {{ m.rich(blok.tekst, 'mt-6') }}
+      {%- if blok.linkDoel and blok.linkDoel.url %}<div class="mt-8">{% include '_components/link' with { link: blok.linkDoel } only %}</div>{% endif %}
+    </div>
+  </div>
+</section>

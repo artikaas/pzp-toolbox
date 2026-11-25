@@ -1,0 +1,35 @@
+{#- Overzicht van alle artikelen, nieuwste eerst, met paginering via ?pagina=2 (in het prototype: pagina-2/). -#}
+{%- import '_components/macros' as m -%}
+{%- set perPagina = blok.aantalPerPagina ?: 9 -%}
+{%- set query = craft.entries().section('artikelen').orderBy('postDate DESC') -%}
+{%- set totaal = query.count() -%}
+{%- set aantalPaginas = max(1, (totaal / perPagina)|round(0, 'ceil')) -%}
+{%- set p = craft.app.request.getQueryParam('pagina') -%}
+{%- set p = (p is string and p matches '/^\\d+$/') ? p * 1 : 1 -%}
+{%- set pagina = min(aantalPaginas, max(1, p)) -%}
+{%- set artikelen = query.offset((pagina - 1) * perPagina).limit(perPagina).all() -%}
+<section class="container-site" aria-labelledby="blok-{{ blok.id }}">
+  <h2 id="blok-{{ blok.id }}" class="{{ blok.kop ? 'mb-10 text-h2 text-primair' : 'sr-only' }}">{{ blok.kop ? m.accent(blok.kop) : 'Alle artikelen' }}</h2>
+  {%- if artikelen is empty %}
+    <p class="text-tekst-zacht">Er zijn nog geen artikelen.</p>
+  {%- else %}
+    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {%- for artikel in artikelen %}<li>{% include '_components/artikel-kaart' with { artikel: artikel } only %}</li>{% endfor %}
+    </ul>
+  {%- endif %}
+  {%- if aantalPaginas > 1 %}
+    <nav class="mt-12 flex justify-center" aria-label="Paginering">
+      <ul class="flex flex-wrap items-center gap-2">
+        {%- for p in 1..aantalPaginas %}
+          <li>
+            {%- if p == pagina -%}
+              <span class="inline-flex size-11 items-center justify-center rounded-full bg-primair font-semibold text-wit" aria-current="page">{{ p }}</span>
+            {%- else -%}
+              <a href="{{ entry.url }}{{ p > 1 ? (prototype ? 'pagina-' ~ p ~ '/' : '?pagina=' ~ p) }}" class="inline-flex size-11 items-center justify-center rounded-full border border-rand font-semibold text-primair hover:bg-vlak"><span class="sr-only">Pagina </span>{{ p }}</a>
+            {%- endif -%}
+          </li>
+        {%- endfor %}
+      </ul>
+    </nav>
+  {%- endif %}
+</section>

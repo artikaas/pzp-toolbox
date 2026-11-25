@@ -1,0 +1,69 @@
+{#-
+  Contactformulier met contactgegevens ernaast.
+  Verstuurt via de plugin Contact Form (action contact-form/send). Ontvanger: global Contact (of CONTACT_FORM_TO).
+  Na verzenden naar de bedankpagina uit de global Contact. Spam: honeypot-veld 'website' (zie modules/site/Module.php).
+  In het prototype (Netlify) verstuurt hetzelfde formulier via Netlify Forms.
+-#}
+{%- import '_components/macros' as m -%}
+{#- Contact Form zet 'submission' als routeparameter bij een fout; via include ... only komt die hier niet vanzelf. -#}
+{%- set submission = prototype ? null : (craft.app.urlManager.routeParams.submission ?? null) -%}
+{%- set melding = prototype ? null : craft.app.session.getFlash('notice') -%}
+{%- set fouten = submission ? submission.getErrors() : {} -%}
+{%- set bedankt = (contact.bedankpagina ?? null) ? contact.bedankpagina.one() : null -%}
+{%- set veld = 'w-full rounded-lg border border-rand bg-wit px-4 py-3 text-tekst outline-none focus:border-primair aria-[invalid=true]:border-red-700' -%}
+<div class="container-site">
+  <div class="grid gap-12 lg:grid-cols-[1fr_22rem] lg:gap-20">
+    <section aria-labelledby="blok-{{ blok.id }}" data-reveal>
+      <h2 id="blok-{{ blok.id }}" class="text-h2 text-primair">{{ m.accent(blok.kop ?: 'Stuur ons een bericht') }}</h2>
+      {%- if blok.intro %}<p class="mt-4 text-lead text-tekst-zacht">{{ blok.intro|nl2br }}</p>{% endif %}
+      {%- if melding %}
+        <div class="mt-6 rounded-lg border border-primair/20 bg-vlak p-4" role="status">{{ melding }}</div>
+      {%- endif %}
+      {%- if fouten is not empty %}
+        <div class="mt-6 rounded-lg border border-red-700 bg-red-50 p-4 text-red-800" role="alert">Het versturen is niet gelukt. Controleer de gemarkeerde velden.</div>
+      {%- endif %}
+      <form method="post" accept-charset="UTF-8" class="mt-8 flex max-w-2xl flex-col gap-5" novalidate data-contact-form
+        {%- if prototype %} name="contact" action="{{ bedankt ? bedankt.url : '' }}" data-netlify="true" netlify-honeypot="website"{% else %} action=""{% endif %}>
+        {%- if prototype %}<input type="hidden" name="form-name" value="contact">{% else %}
+          {{ csrfInput() }}
+          {{ actionInput('contact-form/send') }}
+          {%- if bedankt %}{{ redirectInput(bedankt.url) }}{% endif %}
+        {%- endif %}
+        <p class="hidden" aria-hidden="true"><label>Niet invullen als je een mens bent: <input name="website" tabindex="-1" autocomplete="off"></label></p>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div class="flex flex-col gap-2">
+            <label for="cf-naam-{{ blok.id }}" class="font-semibold">Naam</label>
+            <input id="cf-naam-{{ blok.id }}" name="fromName" type="text" autocomplete="name" required class="{{ veld }}" aria-describedby="cf-naam-{{ blok.id }}-fout" value="{{ submission.fromName ?? '' }}">
+            <p id="cf-naam-{{ blok.id }}-fout" class="text-klein text-red-800" hidden>Vul je naam in.</p>
+          </div>
+          <div class="flex flex-col gap-2">
+            <label for="cf-telefoon-{{ blok.id }}" class="font-semibold">Telefoonnummer <span class="font-normal text-tekst-zacht">(optioneel)</span></label>
+            <input id="cf-telefoon-{{ blok.id }}" name="message[Telefoon]" type="tel" autocomplete="tel" class="{{ veld }}" value="{{ submission.message['Telefoon'] ?? '' }}">
+          </div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="cf-email-{{ blok.id }}" class="font-semibold">E-mailadres</label>
+          <input id="cf-email-{{ blok.id }}" name="fromEmail" type="email" autocomplete="email" required class="{{ veld }}" aria-describedby="cf-email-{{ blok.id }}-fout"{% if fouten.fromEmail ?? false %} aria-invalid="true"{% endif %} value="{{ submission.fromEmail ?? '' }}">
+          <p id="cf-email-{{ blok.id }}-fout" class="text-klein text-red-800"{% if not (fouten.fromEmail ?? false) %} hidden{% endif %}>Vul een geldig e-mailadres in.</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="cf-bericht-{{ blok.id }}" class="font-semibold">Je bericht</label>
+          <textarea id="cf-bericht-{{ blok.id }}" name="message[body]" rows="6" required class="{{ veld }} resize-y" aria-describedby="cf-bericht-{{ blok.id }}-fout"{% if fouten.message ?? false %} aria-invalid="true"{% endif %}>{{ submission.message['body'] ?? '' }}</textarea>
+          <p id="cf-bericht-{{ blok.id }}-fout" class="text-klein text-red-800"{% if not (fouten.message ?? false) %} hidden{% endif %}>Vul je bericht in.</p>
+        </div>
+        <button type="submit" class="btn self-start"><span>Versturen</span>{% include '_components/icons/pijl-rechts' only %}</button>
+      </form>
+    </section>
+
+    {%- if (contact.email ?? null) or (contact.telefoon ?? null) or (contact.adres ?? null) %}
+      <aside class="h-fit rounded-kaart bg-vlak p-8" aria-labelledby="blok-{{ blok.id }}-gegevens" data-reveal>
+        <h2 id="blok-{{ blok.id }}-gegevens" class="text-h3 text-primair">Contactgegevens</h2>
+        <dl class="mt-6 space-y-4">
+          {%- if contact.adres ?? null %}<div><dt class="text-klein font-semibold text-tekst-zacht">Adres</dt><dd>{{ contact.adres|nl2br }}</dd></div>{% endif %}
+          {%- if contact.email ?? null %}<div><dt class="text-klein font-semibold text-tekst-zacht">E-mail</dt><dd><a href="mailto:{{ contact.email }}" class="underline underline-offset-2">{{ contact.email }}</a></dd></div>{% endif %}
+          {%- if contact.telefoon ?? null %}<div><dt class="text-klein font-semibold text-tekst-zacht">Telefoon</dt><dd><a href="tel:{{ contact.telefoon|replace({' ': '', '-': ''}) }}" class="underline underline-offset-2">{{ contact.telefoon }}</a></dd></div>{% endif %}
+        </dl>
+      </aside>
+    {%- endif %}
+  </div>
+</div>

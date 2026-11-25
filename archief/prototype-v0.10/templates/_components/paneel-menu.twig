@@ -1,0 +1,18 @@
+<dialog class="paneel paneel--menu translate-x-full open:translate-x-0 starting:open:translate-x-full transition-[translate,display,overlay] transition-discrete duration-600 ease-veer backdrop:bg-aubergine/0 open:backdrop:bg-aubergine/55 starting:open:backdrop:bg-aubergine/0 backdrop:transition-[background-color,display,overlay] backdrop:transition-discrete backdrop:duration-500 backdrop:ease-zacht" id="menu" aria-labelledby="menu-titel" data-sluit-bij-link>
+  <div class="paneel__kop">
+    <p class="paneel__label">{{ globals.documentTitel }}</p>
+    <h2 class="paneel__titel" id="menu-titel">{{ globals.menuLabel }}</h2>
+    <button class="knop-vierkant paneel__sluit transition-[background-color,rotate] duration-300 ease-veer hover:rotate-90" type="button" data-close aria-label="Sluiten"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16" stroke="#6F0D3B" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+  </div>
+  <nav class="menu transition-[opacity,translate] duration-700 delay-150 ease-veer starting:opacity-0 starting:translate-y-4" aria-label="Toolbox">
+    <p class="menu__kop">Over de toolbox</p>
+    <ul>
+      <li><button type="button" class="transition-[color,padding] duration-300 ease-veer hover:pl-2 menu__item menu__item--uitgelicht" data-open="voordat-je-begint"><span class="ster ster--mini" aria-hidden="true"><span>!</span></span>{{ voordatJeBegint.titel }}</button></li>
+      <li><button type="button" class="transition-[color,padding] duration-300 ease-veer hover:pl-14 menu__item menu__item--sub" data-open="voordat-je-begint" data-anker="voordat-referenties">{{ referenties.titel }}</button></li>
+    </ul>
+    <p class="menu__kop">De stappen</p>
+    <ul>
+      {% for s in stappen %}<li><a class="transition-[color,padding] duration-300 ease-veer hover:pl-2 menu__item" href="#stap-{{ s.nummer }}"><span class="menu__nr">{{ s.nummer < 10 ? '0' ~ s.nummer : s.nummer }}</span>{{ s.titel }}</a></li>{% endfor %}
+    </ul>
+  </nav>
+</dialog>
