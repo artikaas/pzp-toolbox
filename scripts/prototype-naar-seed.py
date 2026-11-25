@@ -24,6 +24,8 @@ def groep(kop, tekst='', items=(), kolom=None):
     v = {'tekst': p(tekst) + ul(list(items))}
     if kolom: v['kolom'] = kolom
     return {'type': 'groep', 'titel': kop, 'velden': v}
+# Let op: de Seeder van De Bron herkent een Matrix-lijst alleen als het EERSTE item een sleutel 'velden' heeft.
+# Geef daarom elk Matrix-item 'velden' mee, ook als die leeg is.
 
 def hulpmiddel(l):
     v = {}
@@ -70,7 +72,7 @@ def inhoud(blokken):
         if buf: uit.append({'type': 'tekstInhoud', 'velden': {'tekst': ''.join(buf)}}); buf.clear()
     for b in blokken:
         if b['type'] == 'kop':
-            flush(); uit.append({'type': 'tussenkop', 'titel': b['tekst']})
+            flush(); uit.append({'type': 'tussenkop', 'titel': b['tekst'], 'velden': {}})  # 'velden' verplicht, anders ziet de Seeder geen Matrix
         elif b['type'] == 'tekst': buf.append(p(b['html']))
         elif b['type'] == 'lijst': buf.append(ul(b['items']))
         elif b['type'] == 'tabel':

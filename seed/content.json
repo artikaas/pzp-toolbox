@@ -396,7 +396,8 @@
               "inhoud": [
                 {
                   "type": "tussenkop",
-                  "titel": "Wat is proactieve zorgplanning (PZP)?"
+                  "titel": "Wat is proactieve zorgplanning (PZP)?",
+                  "velden": {}
                 },
                 {
                   "type": "tekstInhoud",
@@ -406,7 +407,8 @@
                 },
                 {
                   "type": "tussenkop",
-                  "titel": "Waarom PZP in Twente? (Regionale hoofddoelen)"
+                  "titel": "Waarom PZP in Twente? (Regionale hoofddoelen)",
+                  "velden": {}
                 },
                 {
                   "type": "tekstInhoud",
@@ -424,7 +426,8 @@
               "inhoud": [
                 {
                   "type": "tussenkop",
-                  "titel": "Doel van deze sectie"
+                  "titel": "Doel van deze sectie",
+                  "velden": {}
                 },
                 {
                   "type": "tekstInhoud",
@@ -434,7 +437,8 @@
                 },
                 {
                   "type": "tussenkop",
-                  "titel": "Hoe werkt deze PZP-toolbox?"
+                  "titel": "Hoe werkt deze PZP-toolbox?",
+                  "velden": {}
                 },
                 {
                   "type": "tekstInhoud",
@@ -444,7 +448,8 @@
                 },
                 {
                   "type": "tussenkop",
-                  "titel": "Samenwerking & Afspraken in Twente (Versneld Verbinden 2026)"
+                  "titel": "Samenwerking & Afspraken in Twente (Versneld Verbinden 2026)",
+                  "velden": {}
                 },
                 {
                   "type": "tekstInhoud",
@@ -462,7 +467,8 @@
               "inhoud": [
                 {
                   "type": "tussenkop",
-                  "titel": "Begripsafbakening"
+                  "titel": "Begripsafbakening",
+                  "velden": {}
                 },
                 {
                   "type": "tekstInhoud",
@@ -472,7 +478,8 @@
                 },
                 {
                   "type": "tussenkop",
-                  "titel": "Wat is je rol?"
+                  "titel": "Wat is je rol?",
+                  "velden": {}
                 },
                 {
                   "type": "tekstInhoud",
@@ -482,7 +489,8 @@
                 },
                 {
                   "type": "tussenkop",
-                  "titel": "Matrix rollen & verantwoordelijkheden"
+                  "titel": "Matrix rollen & verantwoordelijkheden",
+                  "velden": {}
                 },
                 {
                   "type": "tekstInhoud",
@@ -492,7 +500,8 @@
                 },
                 {
                   "type": "tussenkop",
-                  "titel": "Medische eindverantwoordelijkheid per zorgsetting"
+                  "titel": "Medische eindverantwoordelijkheid per zorgsetting",
+                  "velden": {}
                 },
                 {
                   "type": "tekstInhoud",
