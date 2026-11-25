@@ -1,0 +1,32 @@
+{#- Interactieve checklist (alleen in de browser, er wordt niets opgeslagen). Zie src/js/modules/checklist.js. -#}
+{%- import '_components/macros' as m -%}
+{%- set antwoorden = [labels.antwoordNee, labels.antwoordTwijfel, labels.antwoordJa] -%}
+{%- set conclusie = c.conclusie ?? '' -%}
+{%- set delen = conclusie|split(':', 2) -%}
+<section class="paneel__sectie checklist" data-checklist>
+  <h3>{{ c.title }}</h3>
+  {{ m.rich(c.instructie, 'checklist__instructie') }}
+  <div class="checklist__tabel" role="group" aria-label="{{ c.title }}">
+    <div class="checklist__rij checklist__rij--kop" aria-hidden="true"><span></span>{% for a in antwoorden %}<span>{{ a }}</span>{% endfor %}</div>
+    {%- set rijen = c.signalen|map(r => r.signaal) -%}
+    {%- for tekst in rijen %}
+    <fieldset class="checklist__rij">
+      <legend>{{ tekst }}</legend>
+      {%- set rij = loop.index -%}
+      {%- for a in antwoorden %}<label><input type="radio" name="cl{{ nummer }}-{{ rij }}" value="{{ loop.index }}"><span class="sr-only">{{ a }}</span></label>{% endfor %}
+    </fieldset>
+    {%- endfor %}
+    {%- if conclusie %}
+    <fieldset class="checklist__rij checklist__rij--conclusie">
+      <legend>{% if delen|length > 1 %}<strong>{{ delen[0] }}:</strong>{{ delen[1] }}{% else %}{{ conclusie }}{% endif %}</legend>
+      {%- for a in antwoorden %}<label><input type="radio" name="cl{{ nummer }}-conclusie" value="{{ loop.index }}"><span class="sr-only">{{ a }}</span></label>{% endfor %}
+    </fieldset>
+    {%- endif %}
+  </div>
+  <div class="checklist__uitkomst" aria-live="polite">
+    {%- if c.uitkomstKop %}<h4>{{ c.uitkomstKop }}</h4>{% endif %}
+    <div class="uitkomst" data-uitkomst="nee">{{ m.rich(c.uitkomstNee) }}</div>
+    <div class="uitkomst" data-uitkomst="anders">{{ m.rich(c.uitkomstAnders) }}</div>
+  </div>
+  <button type="button" class="tekstknop" data-wis>Wis antwoorden</button>
+</section>

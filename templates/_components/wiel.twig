@@ -1,0 +1,34 @@
+{#- Het wiel met de kaarten van de stappen. De cirkel komt uit _svg/cirkel-<aantal>.svg; posities voor 5 in app.css. -#}
+{%- import '_components/macros' as m -%}
+{%- set n = stappen|length -%}
+<section class="hero" id="cirkel" aria-labelledby="hero-titel">
+  <h1 class="hero__titel hero__titel--boven" aria-hidden="true">{{ m.accent(toolboxAlgemeen.kop, 'accent') }}</h1>
+  <div class="cirkel cirkel--{{ n }}" style="--n: {{ n }}">
+    <div class="cirkel__ring motion-safe:animate-[ring-in_1.1s_var(--ease-veer)_backwards]">
+      {% include '_svg/cirkel-' ~ n ~ '.svg' ignore missing %}
+      <div class="cirkel__midden">
+        <h1 class="hero__titel" id="hero-titel">{{ m.accent(toolboxAlgemeen.kop, 'accent') }}</h1>
+        {%- if toolboxAlgemeen.heroSubtitel %}<p class="hero__subtitel">{{ toolboxAlgemeen.heroSubtitel }}</p>{% endif %}
+      </div>
+    </div>
+    <ol class="kaarten">
+    {%- for stap in stappen %}
+      {%- set hoek = 180 + (loop.index0 + 0.5) * 360 / n -%}
+      {%- set rollen = stap.rollen.all() -%}
+      <li class="kaart motion-safe:animate-[kaart-in_.8s_var(--ease-veer)_backwards]" style="--a: {{ hoek }}deg; animation-delay: {{ 350 + loop.index0 * 110 }}ms">
+        <a class="kaart__link transition-[translate] duration-500 ease-veer hover:-translate-y-1.5 focus-visible:-translate-y-1.5" href="#stap-{{ loop.index }}">
+          {{ m.tag(loop.index) }}
+          <span class="ballon transition-colors duration-300 ease-zacht">
+            <span class="ballon__label">Stap {{ loop.index }}</span>
+            <span class="ballon__titel">{{ stap.kaarttitel ?: stap.title }}</span>
+            <span class="ballon__rollen">
+              {%- for rol in rollen %}<span class="chip">{% include '_components/icons/persoon' with { kleur: rol.kleur.value } only %}</span>{% endfor -%}
+              <span class="sr-only">: {{ rollen|map(r => r.title)|join(', ') }}</span>
+            </span>
+          </span>
+        </a>
+      </li>
+    {%- endfor %}
+    </ol>
+  </div>
+</section>

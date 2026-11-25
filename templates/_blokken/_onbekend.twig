@@ -1,4 +1,0 @@
-{#- Terugval voor een bloktype zonder template. Alleen zichtbaar in devMode en in het prototype. -#}
-{%- if craft.app.config.general.devMode or prototype -%}
-  <div class="container-tekst"><div class="rounded border border-dashed border-accent-donker px-6 py-4 text-klein">Geen template voor blok '{{ blok.type.handle }}' (verwacht: templates/_blokken/{{ blok.type.handle }}.twig)</div></div>
-{%- endif -%}

@@ -1,5 +1,13 @@
 # Changelog pzp-toolbox
 
+## V0.12 (B3: templates en frontend)
+- Templates uit prototype V0.10 overgezet naar de Craft-API: `_entries/home`, `_components/wiel`, `stapblok`, `paneel-stap`, `paneel-voordat`, `paneel-menu`, `checklist`, `linkrij`; header en footer vervangen.
+- Startertemplates die niet gebruikt worden weggehaald (blokken, pagina, artikel, hero, kaarten).
+- CSS: tokens van de toolbox in `@theme` (De Bron-namen blijven bestaan), componenten uit het prototype in `@layer components`; preflight van Tailwind blijft aan, lijsten krijgen hun opsommingsteken expliciet. Koppen krijgen hun lettertype per component.
+- JavaScript als modules: `panelen.js`, `wiel.js`, `checklist.js`, `navbar.js` (menu, reveal, video en contactformulier weg).
+- Fonts in `web/fonts`, ster en ballonpunt in `src/assets` (via Vite).
+- Prototype via de mock en Twing van De Bron: geen fouten, geen kapotte links, geen JavaScript-fouten.
+
 ## V0.11 (B2: contentmodel en seed)
 - Project gestart vanuit De Bron V1.0 (zie CHANGELOG-starter.md).
 - `contentmodel.yaml` volgens de blokkenspecificatie: singles Toolbox en Voordat je begint, sectie Rollen, stappen als Matrix (vast op vijf), globals Algemeen, Toolbox, Labels en Footer.

@@ -1,0 +1,19 @@
+<svg class="cirkel__svg" viewBox="0 0 1141 888" fill="none" aria-hidden="true" focusable="false" overflow="visible" xmlns="http://www.w3.org/2000/svg">
+{# Gegenereerd door scripts/cirkel-evenredig.py: 4 segmenten in de stijl van Figma 174:427. Segment 1 begint bij de staart, loopt met de klok mee; het laatste segment ligt onder segment 1. Segmentgrootte 87.8 graden. #}
+<circle cx="720.5" cy="420.0" r="300" fill="#fff"/>
+<a class="segment segment--2 transition-[translate,filter] duration-500 ease-veer" href="#stap-2" tabindex="-1">
+<path d="M704.32 0.31 A420.0 420.0 0 0 1 1139.25 387.66 L1076.91 440.45 Q1072.42 447.60 1057.30 441.69 L995.68 398.75 A276.0 276.0 0 0 0 709.87 144.20 L755.15 84.28 Q761.64 69.41 754.67 64.64 Z" fill="#EDA4BA"/>
+</a>
+<a class="segment segment--3 transition-[translate,filter] duration-500 ease-veer" href="#stap-3" tabindex="-1">
+<path d="M1139.25 387.66 A420.0 420.0 0 0 1 768.94 837.20 L713.79 776.94 Q706.48 772.72 711.80 757.39 L752.33 694.16 A276.0 276.0 0 0 0 995.68 398.75 L1057.30 441.69 Q1072.42 447.60 1076.91 440.45 Z" fill="#F2BDCD"/>
+</a>
+<a class="segment segment--4 transition-[translate,filter] duration-500 ease-veer" href="#stap-4" tabindex="-1">
+<path d="M768.94 837.20 A420.0 420.0 0 0 1 300.76 405.34 L444.67 410.37 A276.0 276.0 0 0 0 752.33 694.16 L711.80 757.39 Q706.48 772.72 713.79 776.94 Z" fill="#F7D5DF"/>
+</a>
+<a class="segment segment--1 transition-[translate,filter] duration-500 ease-veer" href="#stap-1" tabindex="-1">
+<path d="M300.50 420.00 A420.0 420.0 0 0 1 704.32 0.31 L754.67 64.64 Q761.64 69.41 755.15 84.28 L709.87 144.20 A276.0 276.0 0 0 0 444.50 420.00 Z" fill="#DE5981"/>
+<path d="M444.43 412.25 A444 444 0 0 1 23.74 863.39 L-3000 863.39 L-3000 719.59 L16.20 719.59 A300 300 0 0 0 300.45 414.76 Z" fill="#DE5981"/>
+</a>
+<g class="cirkel__schaduw" opacity="0.1" filter="url(#cirkel-schaduw)"><path fill-rule="evenodd" clip-rule="evenodd" d="M720.5 72.0A348 348 0 1 1 720.5 768.0A348 348 0 1 1 720.5 72.0ZM720.5 144.0A276 276 0 1 0 720.5 696.0A276 276 0 1 0 720.5 144.0Z" fill="#6F0D3B"/></g>
+<defs><filter id="cirkel-schaduw" x="300" y="0" width="840" height="840" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="12"/></filter></defs>
+</svg>

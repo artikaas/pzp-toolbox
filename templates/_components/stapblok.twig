@@ -1,0 +1,47 @@
+{#- Stap op de pagina: kop, groepen in twee kolommen, Lees meer, en rechts tips, rollen en de gereedschapskist. -#}
+{%- import '_components/macros' as m -%}
+{%- set groepen = stap.groepen.all() -%}
+{%- set rollen = stap.rollen.all() -%}
+<article class="stap" id="stap-{{ nummer }}" aria-labelledby="stap-{{ nummer }}-titel">
+  <div class="stap__hoofd">
+    <h2 class="stap__titel" id="stap-{{ nummer }}-titel">{{ m.tag(nummer, true) }}<span class="sr-only">Stap {{ nummer }}: </span>{{ stap.title }}</h2>
+    <div class="stap__kolommen">
+      {%- for kolom in ['links', 'rechts'] %}
+        {%- set inKolom = groepen|filter(g => (g.kolom.value ?? 'links') == kolom) -%}
+        {%- if inKolom|length %}
+        <div class="stap__kolom">
+          {%- for groep in inKolom %}
+          <div class="groep">
+            <h3 class="groep__kop">{{ groep.title }}</h3>
+            {{ m.rich(groep.tekst, 'groep__tekst') }}
+          </div>
+          {%- endfor %}
+        </div>
+        {%- endif %}
+      {%- endfor %}
+    </div>
+    <div class="stap__knoppen">
+      <button class="knop group transition-[background-color,translate,box-shadow] duration-300 ease-veer hover:-translate-y-0.5 hover:shadow-[0_10px_20px_-10px_rgb(111_13_59/.45)] active:translate-y-0" type="button" data-open="meer-{{ nummer }}" aria-haspopup="dialog">
+        {{ labels.leesMeer }}<span class="sr-only"> over stap {{ nummer }}</span>
+        {% include '_components/icons/pijl-lang' with { class: 'transition-transform duration-300 ease-veer group-hover:translate-x-1' } only %}
+      </button>
+    </div>
+  </div>
+  <aside class="stap__zij" aria-label="Tips bij stap {{ nummer }}">
+    <a class="knop-vierkant transition-[background-color,translate] duration-300 ease-veer hover:-translate-y-0.5" href="#cirkel" aria-label="Terug naar het overzicht">{% include '_components/icons/home' only %}</a>
+    {%- if stap.tips is not empty %}
+    <div class="tips">
+      <p class="tips__kop">{{ labels.tipsKop }}</p>
+      {{ m.rich(stap.tips, 'tips__tekst') }}
+    </div>
+    {%- endif %}
+    <ul class="legenda" aria-label="Wie is betrokken">
+      {%- for rol in rollen %}<li>{% include '_components/icons/persoon' with { kleur: rol.kleur.value } only %}{{ rol.title }}</li>{% endfor %}
+    </ul>
+    <button class="toolbox group" type="button" data-open="meer-{{ nummer }}" data-tab="hulpmiddelen" aria-haspopup="dialog">
+      <svg class="toolbox__svg transition-[translate,rotate] duration-500 ease-veer group-hover:-translate-y-1.5 group-hover:-rotate-3 group-focus-visible:-translate-y-1.5 group-focus-visible:-rotate-3" viewBox="0 0 628 424" width="170" height="115" aria-hidden="true" focusable="false"><use href="#gereedschapskist"/></svg>
+      <span class="toolbox__label">{{ labels.toolboxLabel }}</span>
+      <span class="sr-only">: {{ labels.tabHulpmiddelen|lower }} bij stap {{ nummer }}</span>
+    </button>
+  </aside>
+</article>

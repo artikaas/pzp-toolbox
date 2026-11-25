@@ -1,0 +1,26 @@
+{#-
+  Rij in de lijsten Werkwijze per sector en Hulpmiddelen.
+  - titel, omschrijving, link (Link-veld of null), leegLabel ('Link volgt' of 'Document volgt')
+  Het label rechts komt vanzelf: de extensie bij een document, Website bij een url, anders leegLabel.
+-#}
+{%- set link = link ?? null -%}
+{%- set omschrijving = omschrijving ?? null -%}
+{%- set heeftLink = link and link.url -%}
+{%- if heeftLink -%}
+  {%- set soort = link.type == 'asset' ? ((link.element.extension ?? 'document')|upper) : 'Website' -%}
+{%- else -%}
+  {%- set soort = leegLabel ?? 'Link volgt' -%}
+{%- endif -%}
+{%- set klassen = 'linkrij group/rij transition-[background-color,translate] duration-300 ease-veer' -%}
+<li>
+  {% if heeftLink %}<a class="{{ klassen }} hover:-translate-y-0.5" href="{{ link.url }}" target="_blank" rel="noopener">{% else %}<div class="{{ klassen }} linkrij--leeg"{% if omschrijving %} tabindex="0"{% endif %}>{% endif %}
+    <span class="linkrij__tekst">
+      <span class="linkrij__titel">{{ titel }}</span>
+      {%- if omschrijving %}
+      <span class="linkrij__oms grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity] duration-500 ease-veer group-hover/rij:grid-rows-[1fr] group-hover/rij:opacity-100 group-focus-visible/rij:grid-rows-[1fr] group-focus-visible/rij:opacity-100 [@media(hover:none)]:grid-rows-[1fr] [@media(hover:none)]:opacity-100"><span class="overflow-hidden"><span class="block pt-1">{{ omschrijving }}</span></span></span>
+      {%- endif %}
+    </span>
+    {%- if omschrijving %}<span class="linkrij__info transition-opacity duration-300 group-hover/rij:opacity-0 [@media(hover:none)]:hidden" aria-hidden="true">i</span>{% endif %}
+    <span class="linkrij__type">{{ soort }}</span>
+    {% if heeftLink %}<span class="linkrij__pijl">{% include '_components/icons/pijl-lang' only %}</span><span class="sr-only"> (opent in een nieuw tabblad)</span></a>{% else %}</div>{% endif %}
+</li>

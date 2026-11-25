@@ -1,7 +1,0 @@
-{#- Tekst: optionele kop en inleiding, daarna lopende tekst. -#}
-{%- import '_components/macros' as m -%}
-<section class="container-tekst" {% if blok.kop %}aria-labelledby="blok-{{ blok.id }}"{% endif %} data-reveal>
-  {%- if blok.kop %}<h2 id="blok-{{ blok.id }}" class="mb-6 text-h2 text-primair">{{ m.accent(blok.kop) }}</h2>{% endif %}
-  {%- if blok.intro %}<p class="mb-6 text-lead font-medium">{{ blok.intro|nl2br }}</p>{% endif %}
-  {{ m.rich(blok.tekst) }}
-</section>

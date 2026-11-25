@@ -1,11 +1,25 @@
-{#- Home (sectie Home): grote header en de blokken. -#}
+{#- De toolbox (single Toolbox): wiel, vijf stapblokken, panelen en de zwevende ster. -#}
 {%- extends '_layouts/base' -%}
+{%- set stappen = entry.toolboxStappen.all() -%}
+{%- set voordat = craft.entries().section('voordat').one() -%}
 {%- block content -%}
-  {% include '_components/hero' with { entry: entry, groot: true } only %}
-  {%- set blokken = entry.blokken.all() %}
-  {%- if blokken is not empty %}
-    <div class="blokken blokken--home">
-      {% include '_blokken/_render' with { blokken: blokken, entry: entry, context: 'home' } only %}
-    </div>
+  {% include '_components/wiel' with { stappen: stappen } %}
+  <section class="stappen" aria-label="De stappen">
+    {%- for stap in stappen %}
+      {% include '_components/stapblok' with { stap: stap, nummer: loop.index } %}
+    {%- endfor %}
+  </section>
+{%- endblock -%}
+{%- block overlays -%}
+  {%- for stap in stappen %}
+    {% include '_components/paneel-stap' with { stap: stap, nummer: loop.index } %}
+  {%- endfor %}
+  {%- if voordat %}
+    {% include '_components/paneel-voordat' with { voordat: voordat } %}
+    <button class="ster ster--zwevend group transition-[scale,rotate] duration-500 ease-veer hover:scale-110 hover:rotate-12 motion-safe:[animation:ster-in_.9s_var(--ease-veer)_1.2s_backwards,ster-bop_6s_var(--ease-veer)_3s_infinite]" type="button" data-open="voordat-je-begint" aria-haspopup="dialog">
+      <span aria-hidden="true">!</span>
+      <span class="ster__label pointer-events-none translate-x-2 opacity-0 transition-[opacity,translate] duration-300 ease-veer group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100">{{ labels.voordatLabel }}</span>
+    </button>
   {%- endif %}
+  {% include '_components/paneel-menu' with { stappen: stappen, voordat: voordat } %}
 {%- endblock -%}

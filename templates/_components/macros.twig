@@ -34,3 +34,8 @@
   {%- set maanden = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'] -%}
   {%- if d %}{{ d|date('j') }} {{ maanden[(d|date('n')) - 1] }} {{ d|date('Y') }}{% endif -%}
 {%- endmacro %}
+
+{#- Nummertag (01, 02 ...). klein: de roze variant naast de staptitels. -#}
+{% macro tag(nummer, klein) -%}
+  <span class="tag{{ klein ? ' tag--klein' }} transition-colors duration-300 ease-zacht" aria-hidden="true">{{ nummer < 10 ? '0' ~ nummer : nummer }}</span>
+{%- endmacro %}

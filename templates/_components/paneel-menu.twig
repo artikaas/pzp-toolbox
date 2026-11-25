@@ -1,0 +1,24 @@
+{#- Menu (knop rechtsboven): Voordat je begint met de referenties als subitem, en de stappen. -#}
+{%- import '_components/macros' as m -%}
+<dialog class="paneel paneel--menu translate-x-full open:translate-x-0 starting:open:translate-x-full transition-[translate,display,overlay] transition-discrete duration-600 ease-veer backdrop:bg-aubergine/0 open:backdrop:bg-aubergine/55 starting:open:backdrop:bg-aubergine/0 backdrop:transition-[background-color,display,overlay] backdrop:transition-discrete backdrop:duration-500 backdrop:ease-zacht" id="menu" aria-labelledby="menu-titel" data-sluit-bij-link>
+  <div class="paneel__kop">
+    {%- if toolboxAlgemeen.documentTitel %}<p class="paneel__label">{{ toolboxAlgemeen.documentTitel }}</p>{% endif %}
+    <h2 class="paneel__titel" id="menu-titel">{{ labels.menuLabel }}</h2>
+    <button class="knop-vierkant paneel__sluit transition-[background-color,rotate] duration-300 ease-veer hover:rotate-90" type="button" data-close aria-label="Sluiten">{% include '_components/icons/kruis' only %}</button>
+  </div>
+  <nav class="menu transition-[opacity,translate] duration-700 delay-150 ease-veer starting:opacity-0 starting:translate-y-4" aria-label="Toolbox">
+    {%- if voordat %}
+    <p class="menu__kop">Over de toolbox</p>
+    <ul>
+      <li><button type="button" class="transition-[color,padding] duration-300 ease-veer hover:pl-2 menu__item menu__item--uitgelicht" data-open="voordat-je-begint"><span class="ster ster--mini" aria-hidden="true"><span>!</span></span>{{ voordat.title }}</button></li>
+      {%- if voordat.tekst is not empty %}
+      <li><button type="button" class="transition-[color,padding] duration-300 ease-veer hover:pl-14 menu__item menu__item--sub" data-open="voordat-je-begint" data-anker="voordat-referenties">{{ voordat.kop }}</button></li>
+      {%- endif %}
+    </ul>
+    {%- endif %}
+    <p class="menu__kop">De stappen</p>
+    <ul>
+      {%- for stap in stappen %}<li><a class="transition-[color,padding] duration-300 ease-veer hover:pl-2 menu__item" href="#stap-{{ loop.index }}"><span class="menu__nr">{{ loop.index < 10 ? '0' ~ loop.index : loop.index }}</span>{{ stap.title }}</a></li>{% endfor %}
+    </ul>
+  </nav>
+</dialog>

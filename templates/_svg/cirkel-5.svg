@@ -1,0 +1,22 @@
+<svg class="cirkel__svg" viewBox="0 0 1141 888" fill="none" aria-hidden="true" focusable="false" overflow="visible" xmlns="http://www.w3.org/2000/svg">
+{# Gegenereerd door scripts/cirkel-evenredig.py: 5 segmenten in de stijl van Figma 174:427. Segment 1 begint bij de staart, loopt met de klok mee; het laatste segment ligt onder segment 1. Segmentgrootte 69.7 graden. #}
+<circle cx="720.5" cy="420.0" r="300" fill="#fff"/>
+<a class="segment segment--2 transition-[translate,filter] duration-500 ease-veer" href="#stap-2" tabindex="-1">
+<path d="M574.72 26.11 A420.0 420.0 0 0 1 1039.31 146.57 L1020.18 225.99 Q1020.78 234.41 1005.09 238.57 L930.00 240.32 A276.0 276.0 0 0 0 624.70 161.16 L649.12 90.13 Q650.67 73.98 642.57 71.61 Z" fill="#EDA4BA"/>
+</a>
+<a class="segment segment--3 transition-[translate,filter] duration-500 ease-veer" href="#stap-3" tabindex="-1">
+<path d="M1039.31 146.57 A420.0 420.0 0 0 1 1087.58 624.08 L1006.46 633.71 Q998.77 637.19 989.43 623.92 L961.73 554.11 A276.0 276.0 0 0 0 930.00 240.32 L1005.09 238.57 Q1020.78 234.41 1020.18 225.99 Z" fill="#F2BDCD"/>
+</a>
+<a class="segment segment--4 transition-[translate,filter] duration-500 ease-veer" href="#stap-4" tabindex="-1">
+<path d="M1087.58 624.08 A420.0 420.0 0 0 1 656.51 835.10 L619.33 762.36 Q613.39 756.36 622.60 742.99 L678.45 692.78 A276.0 276.0 0 0 0 961.73 554.11 L989.43 623.92 Q998.77 637.19 1006.46 633.71 Z" fill="#F7D5DF"/>
+</a>
+<a class="segment segment--5 transition-[translate,filter] duration-500 ease-veer" href="#stap-5" tabindex="-1">
+<path d="M656.51 835.10 A420.0 420.0 0 0 1 300.76 405.34 L444.67 410.37 A276.0 276.0 0 0 0 678.45 692.78 L622.60 742.99 Q613.39 756.36 619.33 762.36 Z" fill="#FCEEF2"/>
+</a>
+<a class="segment segment--1 transition-[translate,filter] duration-500 ease-veer" href="#stap-1" tabindex="-1">
+<path d="M300.50 420.00 A420.0 420.0 0 0 1 574.72 26.11 L642.57 71.61 Q650.67 73.98 649.12 90.13 L624.70 161.16 A276.0 276.0 0 0 0 444.50 420.00 Z" fill="#DE5981"/>
+<path d="M444.43 412.25 A444 444 0 0 1 23.74 863.39 L-3000 863.39 L-3000 719.59 L16.20 719.59 A300 300 0 0 0 300.45 414.76 Z" fill="#DE5981"/>
+</a>
+<g class="cirkel__schaduw" opacity="0.1" filter="url(#cirkel-schaduw)"><path fill-rule="evenodd" clip-rule="evenodd" d="M720.5 72.0A348 348 0 1 1 720.5 768.0A348 348 0 1 1 720.5 72.0ZM720.5 144.0A276 276 0 1 0 720.5 696.0A276 276 0 1 0 720.5 144.0Z" fill="#6F0D3B"/></g>
+<defs><filter id="cirkel-schaduw" x="300" y="0" width="840" height="840" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="12"/></filter></defs>
+</svg>

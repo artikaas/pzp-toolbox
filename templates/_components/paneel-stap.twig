@@ -1,0 +1,62 @@
+{#- Paneel bij een stap (Lees meer en de gereedschapskist): tabbladen Informatie en Hulpmiddelen. -#}
+{%- import '_components/macros' as m -%}
+{%- set rollen = stap.rollen.all() -%}
+{%- set werkwijzen = stap.werkwijzen.all() -%}
+{%- set groepenHulp = stap.hulpmiddelgroepen.all() -%}
+{%- set checklist = stap.checklist.one() -%}
+<dialog class="paneel translate-x-full open:translate-x-0 starting:open:translate-x-full transition-[translate,display,overlay] transition-discrete duration-600 ease-veer backdrop:bg-aubergine/0 open:backdrop:bg-aubergine/55 starting:open:backdrop:bg-aubergine/0 backdrop:transition-[background-color,display,overlay] backdrop:transition-discrete backdrop:duration-500 backdrop:ease-zacht" id="meer-{{ nummer }}" aria-labelledby="meer-{{ nummer }}-titel">
+  <div class="paneel__kop">
+    <div class="paneel__titelregel">
+      {{ m.tag(nummer, true) }}
+      <div>
+        <p class="paneel__label">Stap {{ nummer }}</p>
+        <h2 class="paneel__titel" id="meer-{{ nummer }}-titel">{{ stap.title }}</h2>
+      </div>
+    </div>
+    <button class="knop-vierkant paneel__sluit transition-[background-color,rotate] duration-300 ease-veer hover:rotate-90" type="button" data-close aria-label="Sluiten">{% include '_components/icons/kruis' only %}</button>
+    <div class="stappenbalk" role="tablist" aria-label="Onderdelen van stap {{ nummer }}">
+      {%- for tab in [['info', labels.tabInformatie], ['hulpmiddelen', labels.tabHulpmiddelen]] %}
+      <button type="button" role="tab" class="stappenbalk__knop transition-colors duration-300 ease-zacht" id="meer-{{ nummer }}-tab-{{ tab[0] }}" aria-controls="meer-{{ nummer }}-{{ tab[0] }}" aria-selected="{{ loop.first ? 'true' : 'false' }}" tabindex="{{ loop.first ? '0' : '-1' }}" data-tab="{{ tab[0] }}">
+        {%- if tab[0] == 'hulpmiddelen' %}<svg class="icoon-toolbox" viewBox="0 0 628 424" width="22" height="15" aria-hidden="true" focusable="false"><use href="#gereedschapskist"/></svg>{% endif %}{{ tab[1] }}</button>
+      {%- endfor %}
+    </div>
+  </div>
+  <div class="paneel__inhoud transition-[opacity,translate] duration-700 delay-150 ease-veer starting:opacity-0 starting:translate-y-4">
+    <section class="paneel__body paneel__tab transition-[opacity,translate] duration-500 ease-veer starting:opacity-0 starting:translate-y-2" role="tabpanel" id="meer-{{ nummer }}-info" aria-labelledby="meer-{{ nummer }}-tab-info" tabindex="0">
+      <div class="paneel__hoofd">
+        {{ m.rich(stap.doel, 'paneel__doel') }}
+        <section class="paneel__sectie" id="meer-{{ nummer }}-werkwijze"><h3>{{ labels.tabWerkwijze }}</h3>
+          <ul class="links">
+            {%- if werkwijzen|length %}
+              {%- for w in werkwijzen %}{% include '_components/linkrij' with { titel: w.title, omschrijving: w.omschrijving, link: w.hulpmiddelLink, leegLabel: 'Document volgt' } only %}{% endfor %}
+            {%- else %}
+              {%- set doc = toolboxAlgemeen.werkwijzeDocument ?? null -%}
+              {% include '_components/linkrij' with { titel: (doc and doc.label) ? doc.label : labels.tabWerkwijze, link: doc, leegLabel: 'Document volgt' } only %}
+            {%- endif %}
+          </ul>
+        </section>
+        {%- for groep in stap.achtergrond.all() %}
+        <section class="paneel__sectie"><h3>{{ groep.title }}</h3>{{ m.rich(groep.tekst) }}</section>
+        {%- endfor %}
+      </div>
+      {%- if stap.rolverdeling is not empty or rollen|length %}
+      <aside class="paneel__zij" aria-label="Rolverdeling">
+        <div class="rolverdeling">
+          <p class="rolverdeling__kop">Rolverdeling</p>
+          {{ m.rich(stap.rolverdeling) }}
+          <ul class="legenda legenda--links">{% for rol in rollen %}<li>{% include '_components/icons/persoon' with { kleur: rol.kleur.value } only %}{{ rol.title }}</li>{% endfor %}</ul>
+        </div>
+      </aside>
+      {%- endif %}
+    </section>
+    <section class="paneel__tab paneel__tab--breed transition-[opacity,translate] duration-500 ease-veer starting:opacity-0 starting:translate-y-2" role="tabpanel" id="meer-{{ nummer }}-hulpmiddelen" aria-labelledby="meer-{{ nummer }}-tab-hulpmiddelen" tabindex="0" hidden>
+      <h3 class="sr-only">{{ labels.tabHulpmiddelen }}</h3>
+      {%- for groep in groepenHulp %}
+        {%- if groep.kop %}<h4>{{ groep.kop }}</h4>{% endif %}
+        <ul class="links">{% for h in groep.hulpmiddelen.all() %}{% include '_components/linkrij' with { titel: h.title, omschrijving: h.omschrijving, link: h.hulpmiddelLink } only %}{% endfor %}</ul>
+      {%- endfor %}
+      {%- if not groepenHulp|length and not checklist %}<p class="paneel__leeg">{{ labels.leegTekst }}</p>{% endif %}
+      {%- if checklist %}{% include '_components/checklist' with { c: checklist, nummer: nummer } %}{% endif %}
+    </section>
+  </div>
+</dialog>

@@ -1,0 +1,37 @@
+{#- Paneel Voordat je begint (single Voordat je begint), achter de ster. -#}
+{%- import '_components/macros' as m -%}
+{%- set onderdelen = voordat.onderdelen.all() -%}
+<dialog class="paneel translate-x-full open:translate-x-0 starting:open:translate-x-full transition-[translate,display,overlay] transition-discrete duration-600 ease-veer backdrop:bg-aubergine/0 open:backdrop:bg-aubergine/55 starting:open:backdrop:bg-aubergine/0 backdrop:transition-[background-color,display,overlay] backdrop:transition-discrete backdrop:duration-500 backdrop:ease-zacht" id="voordat-je-begint" aria-labelledby="voordat-titel">
+  <div class="paneel__kop">
+    <div class="paneel__titelregel">
+      <span class="ster ster--klein" aria-hidden="true"><span>!</span></span>
+      <div>
+        {%- if toolboxAlgemeen.documentTitel %}<p class="paneel__label">{{ toolboxAlgemeen.documentTitel }}</p>{% endif %}
+        <h2 class="paneel__titel" id="voordat-titel">{{ voordat.title }}</h2>
+      </div>
+    </div>
+    <button class="knop-vierkant paneel__sluit transition-[background-color,rotate] duration-300 ease-veer hover:rotate-90" type="button" data-close aria-label="Sluiten">{% include '_components/icons/kruis' only %}</button>
+    <nav class="stappenbalk" aria-label="Onderdelen">
+      {%- for o in onderdelen %}<a class="stappenbalk__knop transition-colors duration-300 ease-zacht" href="#voordat-{{ loop.index }}">{{ o.title }}</a>{% endfor %}
+      {%- if voordat.tekst is not empty %}<a class="stappenbalk__knop transition-colors duration-300 ease-zacht" href="#voordat-referenties">{{ voordat.kop }}</a>{% endif %}
+    </nav>
+  </div>
+  <div class="paneel__body paneel__body--enkel transition-[opacity,translate] duration-700 delay-150 ease-veer starting:opacity-0 starting:translate-y-4">
+    {%- if voordat.intro %}<p class="paneel__doel">{{ voordat.intro }}</p>{% endif %}
+    {%- for o in onderdelen %}
+    <section class="paneel__sectie" id="voordat-{{ loop.index }}">
+      <h3 class="paneel__sectiekop">{{ o.title }}</h3>
+      {%- for blok in o.inhoud.all() %}
+        {%- if blok.type.handle == 'tussenkop' %}<h4>{{ blok.title }}</h4>
+        {%- else %}{{ m.rich(blok.tekst) }}{% endif %}
+      {%- endfor %}
+    </section>
+    {%- endfor %}
+    {%- if voordat.tekst is not empty %}
+    <section class="paneel__sectie" id="voordat-referenties">
+      <h3 class="paneel__sectiekop">{{ voordat.kop }}</h3>
+      {{ m.rich(voordat.tekst) }}
+    </section>
+    {%- endif %}
+  </div>
+</dialog>

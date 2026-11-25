@@ -95,4 +95,5 @@ Tijdens het bouwen houd je `ddev npm run dev` open in een eigen venster.
 Gebouwd vanuit De Bron V1.0. Het contentmodel staat in `contentmodel.yaml`, de beslissingen in de blokkenspecificatie (Claude Doc) en de afwijkingen in `docs/afwijkingen.md`.
 
 - `python3 scripts/prototype-naar-seed.py` zet de inhoud van prototype V0.10 (`archief/prototype-v0.10`) om naar `seed/content.json`.
-- Templates en frontend volgen in fase B3.
+- Templates: `_entries/home` en `_components/` (wiel, stapblok, panelen, checklist, linkrij). Frontend in `src/` via Vite.
+- Na `git pull`: `ddev npm install && ddev npm run build`, bij nieuwe velden ook `ddev craft site/setup/schema`.
