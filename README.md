@@ -97,3 +97,5 @@ Gebouwd vanuit De Bron V1.0. Het contentmodel staat in `contentmodel.yaml`, de b
 - `python3 scripts/prototype-naar-seed.py` zet de inhoud van prototype V0.10 (`archief/prototype-v0.10`) om naar `seed/content.json`.
 - Templates: `_entries/home` en `_components/` (wiel, stapblok, panelen, checklist, linkrij). Frontend in `src/` via Vite.
 - Na `git pull`: `ddev npm install && ddev npm run build`, bij nieuwe velden ook `ddev craft site/setup/schema`.
+- Schone lokale installatie (alleen zolang er nog geen echte inhoud in Craft staat):
+  `rm -rf config/project && ddev craft db/drop-all-tables --interactive=0 && ddev craft install && ddev craft site/setup`

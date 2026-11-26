@@ -1,5 +1,12 @@
 # Changelog pzp-toolbox
 
+## V0.13
+- Stappen zijn losse entries in de sectie Stappen (structure, één niveau) in plaats van een Matrix op de toolbox; de toolbox laadt de eerste vijf in de volgorde van de structuur. Vraagt een schone installatie (zie README).
+- Gereedschapskist terug naast Lees meer (120 px), zodat lange tips het blok niet meer oprekken.
+- Tabblad Hulpmiddelen weer met het witte lijnicoon.
+- Geen scrollen op de achtergrond zolang een paneel open is (scrollbalkruimte blijft staan).
+- Rolverdeling: meer ruimte tussen de punten.
+
 ## V0.12 (B3: templates en frontend)
 - Templates uit prototype V0.10 overgezet naar de Craft-API: `_entries/home`, `_components/wiel`, `stapblok`, `paneel-stap`, `paneel-voordat`, `paneel-menu`, `checklist`, `linkrij`; header en footer vervangen.
 - Startertemplates die niet gebruikt worden weggehaald (blokken, pagina, artikel, hero, kaarten).

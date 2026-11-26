@@ -1,6 +1,7 @@
-{#- De toolbox (single Toolbox): wiel, vijf stapblokken, panelen en de zwevende ster. -#}
+{#- De toolbox (single Toolbox): wiel, vijf stapblokken, panelen en de zwevende ster.
+    De stappen zijn losse entries in de sectie Stappen (volgorde = structuur); het wiel toont de eerste vijf. -#}
 {%- extends '_layouts/base' -%}
-{%- set stappen = entry.toolboxStappen.all() -%}
+{%- set stappen = craft.entries().section('stappen').limit(5).all() -%}
 {%- set voordat = craft.entries().section('voordat').one() -%}
 {%- block content -%}
   {% include '_components/wiel' with { stappen: stappen } %}

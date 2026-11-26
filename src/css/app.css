@@ -134,6 +134,8 @@
   .lijst { list-style: disc; }
   .rolverdeling ul { list-style: disc; }
   .groep__tekst li + li, .paneel__sectie .rich-text li + li { margin-top: 16px; }
+  .rolverdeling .rich-text ul { padding-left: 20px; }
+  .rolverdeling .rich-text li + li { margin-top: 12px; }
   .tips__tekst > * + * { margin-top: 20px; }
 
 :root {
@@ -194,7 +196,6 @@ a { color: inherit; }
 .rolicoon { flex: none; }
 .rolicoon--aubergine { color: var(--zzsd-aubergine); }
 .rolicoon--roze { color: var(--zzsd-roze); }
-.stappenbalk__knop .icoon-toolbox { --stapkleur: #fff2f3; }
 .kaart__link:hover .ballon, .kaart__link:focus-visible .ballon { background: var(--zzsd-aubergine); }
 .kaart__link:hover .tag { background: var(--zzsd-oranje); }
 .ster { position: absolute; left: calc(50% + cos(108deg) * 26%); top: calc(50% + sin(108deg) * 26%); translate: -50% -50%; width: 116px; height: 116px; border: 0; cursor: pointer; background: url("../assets/ster.svg") center / 100px no-repeat; color: var(--zzsd-wit); font-family: var(--font-display); font-size: 50px; line-height: 1; }
@@ -276,7 +277,7 @@ a { color: inherit; }
 .stappenbalk__knop[aria-current] { background: var(--zzsd-roze); border-color: var(--zzsd-roze); cursor: default; }
 .stappenbalk__knop:hover { background: rgb(255 255 255 / .12); }
 .stappenbalk__knop { display: inline-flex; align-items: center; gap: 8px; }
-.stappenbalk__knop .icoon-toolbox { width: 22px; height: 15px; }
+.stappenbalk__knop .icoon-toolbox { width: 18px; height: 18px; flex: none; }
 .stappenbalk__knop[aria-selected="true"] { background: var(--zzsd-roze); border-color: var(--zzsd-roze); }
 .paneel__tab:focus-visible { outline-offset: -3px; }
 .paneel__tab[hidden] { display: none; }
@@ -285,13 +286,16 @@ a { color: inherit; }
 .paneel__tab--breed h4 { font-size: 18px; font-weight: 600; margin: 32px 0 10px; }
 .paneel__tab--breed h4:first-of-type { margin-top: 0; }
 .paneel__tab--breed .checklist { max-width: 900px; }
-.stap__knoppen { display: flex; align-items: center; gap: 12px; }
+.stap__knoppen { display: flex; align-items: center; gap: 28px; }
+/* Geen scrollen op de achtergrond zolang er een paneel open is; de ruimte voor de scrollbalk blijft staan. */
+html { scrollbar-gutter: stable; }
+html:has(dialog[open]) { overflow: hidden; }
 .stappen > .stap:nth-child(1) { --stapkleur: #DE5981; } .stappen > .stap:nth-child(2) { --stapkleur: #EDA4BA; } .stappen > .stap:nth-child(3) { --stapkleur: #F2BDCD; }
 .stappen > .stap:nth-child(4) { --stapkleur: #F7D5DF; } .stappen > .stap:nth-child(5) { --stapkleur: #FCEEF2; }
-.toolbox { margin-top: auto; align-self: flex-end; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 0; border: 0; background: none; cursor: pointer; color: var(--zzsd-aubergine); }
-.toolbox__svg { width: 170px; height: auto; overflow: visible; transform: rotate(-4deg); filter: drop-shadow(0 8px 10px rgb(111 13 59 / .15)); }
+.toolbox { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 0; border: 0; background: none; cursor: pointer; color: var(--zzsd-aubergine); }
+.toolbox__svg { width: 120px; height: auto; overflow: visible; transform: rotate(-4deg); filter: drop-shadow(0 8px 10px rgb(111 13 59 / .15)); }
 .toolbox { --tk-761540: #6f0d3b; --tk-a1365e: color-mix(in srgb, var(--stapkleur, #de5981), #6f0d3b 57%); --tk-aa4267: color-mix(in srgb, var(--stapkleur, #de5981), #6f0d3b 46%); --tk-b25376: color-mix(in srgb, var(--stapkleur, #de5981), #6f0d3b 32%); --tk-b36582: color-mix(in srgb, var(--stapkleur, #de5981), #6f0d3b 19%); --tk-b46f8a: color-mix(in srgb, var(--stapkleur, #de5981), #6f0d3b 12%); --tk-b87b93: color-mix(in srgb, var(--stapkleur, #de5981), #6f0d3b 3%); --tk-cc567b: color-mix(in srgb, var(--stapkleur, #de5981), #6f0d3b 21%); --tk-d56284: color-mix(in srgb, var(--stapkleur, #de5981), #6f0d3b 11%); --tk-dd6e8d: var(--stapkleur, #de5981); --tk-dd7493: color-mix(in srgb, var(--stapkleur, #de5981), white 4%); --tk-e6809c: color-mix(in srgb, var(--stapkleur, #de5981), white 14%); --tk-e691a9: color-mix(in srgb, var(--stapkleur, #de5981), white 24%); --tk-eba8ba: color-mix(in srgb, var(--stapkleur, #de5981), white 40%); --tk-ee91ab: color-mix(in srgb, var(--stapkleur, #de5981), white 27%); --tk-efb4c4: color-mix(in srgb, var(--stapkleur, #de5981), white 49%); --tk-f2c8d3: color-mix(in srgb, var(--stapkleur, #de5981), white 62%); --tk-f4cbd5: color-mix(in srgb, var(--stapkleur, #de5981), white 64%); --tk-f6d5dd: color-mix(in srgb, var(--stapkleur, #de5981), white 71%); --tk-f9e1e6: color-mix(in srgb, var(--stapkleur, #de5981), white 79%); }
-.toolbox__label { font-family: var(--font-label); text-transform: uppercase; font-size: 22px; line-height: 1; transform: var(--schuin); background: var(--zzsd-aubergine); color: var(--zzsd-wit); padding: 5px 10px 4px; border-radius: 4px; transition: background-color .3s; }
+.toolbox__label { font-family: var(--font-label); text-transform: uppercase; font-size: 18px; line-height: 1; transform: var(--schuin); background: var(--zzsd-aubergine); color: var(--zzsd-wit); padding: 5px 10px 4px; border-radius: 4px; transition: background-color .3s; }
 .toolbox:hover .toolbox__label, .toolbox:focus-visible .toolbox__label { background: var(--zzsd-roze); }
 .knop-toolbox { width: 45px; height: 45px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 6px; background: var(--zzsd-aubergine); color: var(--zzsd-wit); cursor: pointer; }
 .knop-toolbox:hover { background: var(--zzsd-roze); }
@@ -408,7 +412,6 @@ a.linkrij:hover { background: var(--zzsd-off-white); }
   .groep__kop { font-size: 18px; line-height: 26px; }
   .stap__zij { width: 100%; align-items: stretch; }
   .knop-vierkant { align-self: flex-end; order: 3; }
-  .toolbox { order: 4; align-self: center; margin-top: 8px; }
   .legenda { order: 2; }
   .paneel { width: 100vw; border-radius: 0; }
   .paneel__kop, .paneel--menu .paneel__kop { padding: 20px 76px 16px 20px; }

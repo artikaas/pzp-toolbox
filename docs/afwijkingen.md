@@ -4,7 +4,8 @@ Alles waarin dit project afwijkt van De Bron (Artica website-starter). Starterve
 
 | Datum | Onderdeel | Wat is er anders en waarom | Herbruikbaar? | Naar starter? |
 | --- | --- | --- | --- | --- |
-| 2026-11-25 | Contentmodel | Geen blokken, pagina's en artikelen. De toolbox is één vaste pagina; stappen zijn een Matrix met precies vijf items (ontwerp wiel) | nee | nee |
+| 2026-11-25 | Contentmodel | Geen blokken, pagina's en artikelen. De toolbox is één vaste pagina | nee | nee |
+| 2026-11-25 | Contentmodel | Stappen als losse entries in een structure-sectie Stappen (één niveau), ingeladen op de toolbox; de template toont de eerste vijf | nee | nee |
 | 2026-11-25 | Contentmodel | Sectie Rollen (label en kleur) als relatie bij elke stap | nee | nee |
 | 2026-11-25 | Contentmodel | Volume Documenten en linkvelden met soort `asset` voor hulpmiddelen | ja | voorgesteld (seed en mock ondersteunen nog geen asset-links) |
 | 2026-11-25 | CKEditor | Knop Tabel invoegen in de standaardconfiguratie (matrix rollen en verantwoordelijkheden als rijke tekst) | misschien | nee |

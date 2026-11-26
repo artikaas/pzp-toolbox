@@ -11,7 +11,7 @@
 # - `link` is een gereserveerde handle in Craft; gebruik bijv. `linkDoel`.
 #
 # Afwijkingen van De Bron (zie docs/afwijkingen.md): geen blokken, pagina's en artikelen;
-# de toolbox is één vaste pagina met vijf stappen.
+# de toolbox is één vaste pagina; de vijf stappen zijn losse entries in de sectie Stappen.
 
 plugins: [ckeditor]
 
@@ -84,7 +84,6 @@ velden:
   signalen:        { soort: tabel, naam: Signalen, kolommen: { signaal: Signaal }, knop: Signaal toevoegen }
 
   # Lijsten
-  toolboxStappen:    { soort: matrix, naam: Stappen, typen: [toolboxStap], min: 5, max: 5, uitleg: 'Het wiel is ontworpen voor vijf stappen. Volgorde = nummer en kleur.' }
   groepen:           { soort: matrix, naam: Inhoud op de pagina, typen: [groep], min: 1, knop: Groep toevoegen }
   achtergrond:       { soort: matrix, naam: Achtergrond, typen: [groep], knop: Kopje toevoegen }
   werkwijzen:        { soort: matrix, naam: Werkwijze per sector, typen: [hulpmiddel], knop: Werkwijze toevoegen, uitleg: 'Leeg = het werkwijzedocument uit de global Toolbox.' }
@@ -108,7 +107,7 @@ typen:
   tekstInhoud:     { naam: Tekst, icoon: paragraph, velden: ['tekst! | Tekst, lijst of tabel'] }
   onderdeel:       { naam: Onderdeel, icoon: book-open, velden: ['title | Titel van het onderdeel', inhoud!] }
 
-  toolboxStap:
+  stap:
     naam: Stap
     icoon: shoe-prints
     tabs:
@@ -121,7 +120,7 @@ typen:
     naam: Toolbox
     icoon: toolbox
     tabs:
-      Stappen: [title, toolboxStappen!]
+      Algemeen: [title]
       SEO: [seoTitel, seoOmschrijving]
   voordat:
     naam: Voordat je begint
@@ -133,6 +132,9 @@ typen:
 # ---------------------------------------------------------------------------- Secties
 secties:
   toolbox: { naam: Toolbox, soort: single, typen: [toolbox], uri: __home__, template: _entries/home }
+  # Stappen als losse entries (besluit Kurt): overzichtelijk in het CP, volgorde = slepen in de structuur.
+  # Het wiel is ontworpen voor vijf stappen; de template toont de eerste vijf.
+  stappen: { naam: Stappen, soort: structure, niveaus: 1, typen: [stap] }
   voordat: { naam: Voordat je begint, soort: single, typen: [voordat] }
   rollen:  { naam: Rollen, soort: channel, typen: [rol] }
 

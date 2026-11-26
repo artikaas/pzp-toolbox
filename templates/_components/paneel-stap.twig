@@ -17,7 +17,7 @@
     <div class="stappenbalk" role="tablist" aria-label="Onderdelen van stap {{ nummer }}">
       {%- for tab in [['info', labels.tabInformatie], ['hulpmiddelen', labels.tabHulpmiddelen]] %}
       <button type="button" role="tab" class="stappenbalk__knop transition-colors duration-300 ease-zacht" id="meer-{{ nummer }}-tab-{{ tab[0] }}" aria-controls="meer-{{ nummer }}-{{ tab[0] }}" aria-selected="{{ loop.first ? 'true' : 'false' }}" tabindex="{{ loop.first ? '0' : '-1' }}" data-tab="{{ tab[0] }}">
-        {%- if tab[0] == 'hulpmiddelen' %}<svg class="icoon-toolbox" viewBox="0 0 628 424" width="22" height="15" aria-hidden="true" focusable="false"><use href="#gereedschapskist"/></svg>{% endif %}{{ tab[1] }}</button>
+        {%- if tab[0] == 'hulpmiddelen' %}{% include '_components/icons/toolbox' with { class: 'icoon-toolbox' } only %}{% endif %}{{ tab[1] }}</button>
       {%- endfor %}
     </div>
   </div>

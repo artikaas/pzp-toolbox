@@ -63,7 +63,7 @@ for s in bron['stappen']:
             'uitkomstNee': f"<p><strong>Alle vragen 'Nee':</strong> {u['nee']}</p>",
             'uitkomstAnders': f"<p><strong>{u['anders_kop']}:</strong></p>" + ul(u['anders']),
         }}]
-    stappen.append({'type': 'toolboxStap', 'titel': s['titel'], 'velden': v})
+    stappen.append({'sectie': 'stappen', 'type': 'stap', 'slug': f"stap-{s['nummer']}", 'titel': s['titel'], 'velden': v})
 
 def inhoud(blokken):
     """Tussenkoppen los; tekst, lijsten en tabellen ertussen samen in één tekstblok."""
@@ -85,8 +85,8 @@ def inhoud(blokken):
 vjb = bron['voordatJeBegint']; ref = bron['referenties']
 seed = {
     'assets': [{'key': 'zzsd-logo', 'volume': 'media', 'file': 'zzsd-logo.svg', 'alt': 'Zelf zorgen, samen doen'}],
-    'entries': rollen + [
-        {'sectie': 'toolbox', 'titel': 'Toolbox', 'velden': {'toolboxStappen': stappen}},
+    'entries': rollen + stappen + [
+        {'sectie': 'toolbox', 'titel': 'Toolbox', 'velden': {}},
         {'sectie': 'voordat', 'titel': vjb['titel'], 'velden': {
             'intro': g['documentOndertitel'],
             'onderdelen': [{'type': 'onderdeel', 'titel': s['titel'], 'velden': {'inhoud': inhoud(s['blokken'])}} for s in vjb['secties']],

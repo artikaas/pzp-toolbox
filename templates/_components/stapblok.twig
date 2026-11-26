@@ -25,6 +25,11 @@
         {{ labels.leesMeer }}<span class="sr-only"> over stap {{ nummer }}</span>
         {% include '_components/icons/pijl-lang' with { class: 'transition-transform duration-300 ease-veer group-hover:translate-x-1' } only %}
       </button>
+      <button class="toolbox group" type="button" data-open="meer-{{ nummer }}" data-tab="hulpmiddelen" aria-haspopup="dialog">
+        <svg class="toolbox__svg transition-[translate,rotate] duration-500 ease-veer group-hover:-translate-y-1.5 group-hover:-rotate-3 group-focus-visible:-translate-y-1.5 group-focus-visible:-rotate-3" viewBox="0 0 628 424" width="170" height="115" aria-hidden="true" focusable="false"><use href="#gereedschapskist"/></svg>
+        <span class="toolbox__label">{{ labels.toolboxLabel }}</span>
+        <span class="sr-only">: {{ labels.tabHulpmiddelen|lower }} bij stap {{ nummer }}</span>
+      </button>
     </div>
   </div>
   <aside class="stap__zij" aria-label="Tips bij stap {{ nummer }}">
@@ -38,10 +43,5 @@
     <ul class="legenda" aria-label="Wie is betrokken">
       {%- for rol in rollen %}<li>{% include '_components/icons/persoon' with { kleur: rol.kleur.value } only %}{{ rol.title }}</li>{% endfor %}
     </ul>
-    <button class="toolbox group" type="button" data-open="meer-{{ nummer }}" data-tab="hulpmiddelen" aria-haspopup="dialog">
-      <svg class="toolbox__svg transition-[translate,rotate] duration-500 ease-veer group-hover:-translate-y-1.5 group-hover:-rotate-3 group-focus-visible:-translate-y-1.5 group-focus-visible:-rotate-3" viewBox="0 0 628 424" width="170" height="115" aria-hidden="true" focusable="false"><use href="#gereedschapskist"/></svg>
-      <span class="toolbox__label">{{ labels.toolboxLabel }}</span>
-      <span class="sr-only">: {{ labels.tabHulpmiddelen|lower }} bij stap {{ nummer }}</span>
-    </button>
   </aside>
 </article>
